@@ -1848,7 +1848,7 @@ html.dark {
 </span><span id="1-1609">                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </span><span id="1-1610">                        <span class="k">continue</span>
 </span><span id="1-1611">
-</span><span id="1-1612">            <span class="n">our_stuff</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-1612">            <span class="n">our_stuff</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </span><span id="1-1613">
 </span><span id="1-1614">    <span class="k">def</span> <span class="nf">_extract_declared_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="1-1615">        <span class="n">our_stuff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span>
@@ -2218,7 +2218,7 @@ html.dark {
 </span><span id="1-1979">
 </span><span id="1-1980">    <span class="c1"># mypy disallows plain property override of variable</span>
 </span><span id="1-1981">    <span class="nd">@property</span>  <span class="c1"># type: ignore</span>
-</span><span id="1-1982">    <span class="k">def</span> <span class="nf">cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-1982">    <span class="k">def</span> <span class="nf">cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 </span><span id="1-1983">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cls</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
 </span><span id="1-1984">
 </span><span id="1-1985">    <span class="nd">@cls</span><span class="o">.</span><span class="n">setter</span>
@@ -2238,7 +2238,7 @@ html.dark {
 </span><span id="1-1999">    <span class="nd">@classmethod</span>
 </span><span id="1-2000">    <span class="k">def</span> <span class="nf">raise_unmapped_for_cls</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">class_</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
 </span><span id="1-2001">        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">class_</span><span class="p">,</span> <span class="s2">&quot;_sa_raise_deferred_config&quot;</span><span class="p">):</span>
-</span><span id="1-2002">            <span class="n">class_</span><span class="o">.</span><span class="n">_sa_raise_deferred_config</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-2002">            <span class="n">class_</span><span class="o">.</span><span class="n">_sa_raise_deferred_config</span><span class="p">()</span>
 </span><span id="1-2003">
 </span><span id="1-2004">        <span class="k">raise</span> <span class="n">orm_exc</span><span class="o">.</span><span class="n">UnmappedClassError</span><span class="p">(</span>
 </span><span id="1-2005">            <span class="n">class_</span><span class="p">,</span>

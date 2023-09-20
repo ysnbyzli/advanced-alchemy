@@ -492,7 +492,7 @@ html.dark {
 </span><span id="1-253">        <span class="c1"># which seems to help typing tools interpret the fn as a classmethod</span>
 </span><span id="1-254">        <span class="c1"># for situations where needed</span>
 </span><span id="1-255">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="nb">classmethod</span><span class="p">):</span>
-</span><span id="1-256">            <span class="n">fn</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__func__</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-256">            <span class="n">fn</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__func__</span>
 </span><span id="1-257">
 </span><span id="1-258">        <span class="bp">self</span><span class="o">.</span><span class="n">fget</span> <span class="o">=</span> <span class="n">fn</span>
 </span><span id="1-259">        <span class="bp">self</span><span class="o">.</span><span class="n">_cascading</span> <span class="o">=</span> <span class="n">cascading</span>
@@ -520,11 +520,11 @@ html.dark {
 </span><span id="1-281">                    <span class="s2">&quot;Unmanaged access of declarative attribute </span><span class="si">%s</span><span class="s2"> from &quot;</span>
 </span><span id="1-282">                    <span class="s2">&quot;non-mapped class </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 </span><span id="1-283">                <span class="p">)</span>
-</span><span id="1-284">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-284">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 </span><span id="1-285">        <span class="k">elif</span> <span class="n">manager</span><span class="o">.</span><span class="n">is_mapped</span><span class="p">:</span>
 </span><span id="1-286">            <span class="c1"># the class is mapped, which means we&#39;re outside of the declarative</span>
 </span><span id="1-287">            <span class="c1"># scan setup, just run the function.</span>
-</span><span id="1-288">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-288">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 </span><span id="1-289">
 </span><span id="1-290">        <span class="c1"># here, we are inside of the declarative scan.  use the registry</span>
 </span><span id="1-291">        <span class="c1"># that is tracking the values of these attributes.</span>
@@ -536,10 +536,10 @@ html.dark {
 </span><span id="1-297">        <span class="n">reg</span> <span class="o">=</span> <span class="n">declarative_scan</span><span class="o">.</span><span class="n">declared_attr_reg</span>
 </span><span id="1-298">
 </span><span id="1-299">        <span class="k">if</span> <span class="bp">self</span> <span class="ow">in</span> <span class="n">reg</span><span class="p">:</span>
-</span><span id="1-300">            <span class="k">return</span> <span class="n">reg</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-300">            <span class="k">return</span> <span class="n">reg</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
 </span><span id="1-301">        <span class="k">else</span><span class="p">:</span>
 </span><span id="1-302">            <span class="n">reg</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
-</span><span id="1-303">            <span class="k">return</span> <span class="n">obj</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-303">            <span class="k">return</span> <span class="n">obj</span>
 </span><span id="1-304">
 </span><span id="1-305">
 </span><span id="1-306"><span class="k">class</span> <span class="nc">_declared_directive</span><span class="p">(</span><span class="n">_declared_attr_common</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">_T</span><span class="p">]):</span>
@@ -797,12 +797,12 @@ html.dark {
 </span><span id="1-558">        <span class="n">reg</span> <span class="o">=</span> <span class="n">registry</span><span class="p">(</span>
 </span><span id="1-559">            <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">type_annotation_map</span><span class="o">=</span><span class="n">type_annotation_map</span>
 </span><span id="1-560">        <span class="p">)</span>
-</span><span id="1-561">        <span class="bp">cls</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">reg</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-561">        <span class="bp">cls</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="n">reg</span>
 </span><span id="1-562">
-</span><span id="1-563">    <span class="bp">cls</span><span class="o">.</span><span class="n">_sa_registry</span> <span class="o">=</span> <span class="n">reg</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-563">    <span class="bp">cls</span><span class="o">.</span><span class="n">_sa_registry</span> <span class="o">=</span> <span class="n">reg</span>
 </span><span id="1-564">
 </span><span id="1-565">    <span class="k">if</span> <span class="s2">&quot;metadata&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
-</span><span id="1-566">        <span class="bp">cls</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">metadata</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-566">        <span class="bp">cls</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">metadata</span>
 </span><span id="1-567">
 </span><span id="1-568">    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__init__&quot;</span><span class="p">,</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__init__</span><span class="p">:</span>
 </span><span id="1-569">        <span class="bp">cls</span><span class="o">.</span><span class="fm">__init__</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">constructor</span>
@@ -848,7 +848,7 @@ html.dark {
 </span><span id="1-609">        <span class="n">current_transforms</span><span class="p">:</span> <span class="n">_DataclassArguments</span>
 </span><span id="1-610">
 </span><span id="1-611">        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;_sa_apply_dc_transforms&quot;</span><span class="p">):</span>
-</span><span id="1-612">            <span class="n">current</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_sa_apply_dc_transforms</span>  <span class="c1"># type: ignore[attr-defined]</span>
+</span><span id="1-612">            <span class="n">current</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_sa_apply_dc_transforms</span>
 </span><span id="1-613">
 </span><span id="1-614">            <span class="n">_ClassScanMapperConfig</span><span class="o">.</span><span class="n">_assert_dc_arguments</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
 </span><span id="1-615">
@@ -1513,7 +1513,7 @@ html.dark {
 </span><span id="1-1274">                <span class="n">sql_type</span> <span class="o">=</span> <span class="n">sqltypes</span><span class="o">.</span><span class="n">_type_map_get</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>  <span class="c1"># type: ignore  # noqa: E501</span>
 </span><span id="1-1275">
 </span><span id="1-1276">            <span class="k">if</span> <span class="n">sql_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-1277">                <span class="n">sql_type_inst</span> <span class="o">=</span> <span class="n">sqltypes</span><span class="o">.</span><span class="n">to_instance</span><span class="p">(</span><span class="n">sql_type</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+</span><span id="1-1277">                <span class="n">sql_type_inst</span> <span class="o">=</span> <span class="n">sqltypes</span><span class="o">.</span><span class="n">to_instance</span><span class="p">(</span><span class="n">sql_type</span><span class="p">)</span>
 </span><span id="1-1278">
 </span><span id="1-1279">                <span class="c1"># ... this additional step will reject most</span>
 </span><span id="1-1280">                <span class="c1"># type -&gt; supertype matches, such as if we had</span>
@@ -1795,7 +1795,7 @@ html.dark {
 </span><span id="1-1556">
 </span><span id="1-1557">        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__class_getitem__&quot;</span><span class="p">):</span>
 </span><span id="1-1558">
-</span><span id="1-1559">            <span class="k">def</span> <span class="nf">__class_getitem__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">]:</span>
+</span><span id="1-1559">            <span class="k">def</span> <span class="nf">__class_getitem__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">]:</span>
 </span><span id="1-1560">                <span class="c1"># allow generic classes in py3.9+</span>
 </span><span id="1-1561">                <span class="k">return</span> <span class="bp">cls</span>
 </span><span id="1-1562">
