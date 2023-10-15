@@ -913,11 +913,11 @@ Defaults to <cite>None</cite>, but can reference any surrogate or candidate key 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – Instance to be added to the collection.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_refresh</strong> – Refresh object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_refresh</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_refresh</span></code></a></p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -935,9 +935,9 @@ Defaults to <cite>None</cite>, but can reference any surrogate or candidate key 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – list of Instances to be added to the collection.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -955,9 +955,9 @@ Defaults to <cite>None</cite>, but can reference any surrogate or candidate key 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>item_id</strong> – Identifier of instance to be deleted.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>id_attribute</strong> – Allows customization of the unique identifier to use for model fetching.
 Defaults to <cite>id</cite>, but can reference any surrogate or candidate key for the table.</p></li>
 </ul>
@@ -980,9 +980,9 @@ Defaults to <cite>id</cite>, but can reference any surrogate or candidate key fo
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>item_ids</strong> – Identifier of instance to be deleted.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>id_attribute</strong> – Allows customization of the unique identifier to use for model fetching.
 Defaults to <cite>id</cite>, but can reference any surrogate or candidate key for the table.</p></li>
 <li><p><strong>chunk_size</strong> – Allows customization of the <code class="docutils literal notranslate"><span class="pre">insertmanyvalues_max_parameters</span></code> setting for the driver.
@@ -1021,9 +1021,9 @@ Defaults to <cite>950</cite> if left unset.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>item_id</strong> – Identifier of the instance to be retrieved.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a></p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>id_attribute</strong> – Allows customization of the unique identifier to use for model fetching.
 Defaults to <cite>id</cite>, but can reference any surrogate or candidate key for the table.</p></li>
 </ul>
@@ -1045,9 +1045,9 @@ Defaults to <cite>id</cite>, but can reference any surrogate or candidate key fo
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a></p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Identifier of the instance to be retrieved.</p></li>
 </ul>
 </dd>
@@ -1068,9 +1068,9 @@ Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQL
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a></p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Identifier of the instance to be retrieved.</p></li>
 </ul>
 </dd>
@@ -1097,11 +1097,11 @@ method.</p></li>
 dictionary containing flags to indicate a more specific set of
 FOR UPDATE flags for the SELECT</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_refresh</strong> – Refresh object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_refresh</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_refresh</span></code></a></p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Identifier of the instance to be retrieved.</p></li>
 </ul>
 </dd>
@@ -1130,11 +1130,11 @@ method.</p></li>
 dictionary containing flags to indicate a more specific set of
 FOR UPDATE flags for the SELECT</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_refresh</strong> – Refresh object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_refresh</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_refresh</span></code></a></p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Identifier of the instance to be retrieved.</p></li>
 </ul>
 </dd>
@@ -1155,7 +1155,7 @@ model value will be updated.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>*filters</strong> – Types for specific filtering operations.</p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Instance attribute value filters.</p></li>
 </ul>
 </dd>
@@ -1180,11 +1180,11 @@ method.</p></li>
 dictionary containing flags to indicate a more specific set of
 FOR UPDATE flags for the SELECT</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_refresh</strong> – Refresh object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_refresh</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_refresh</span></code></a></p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>id_attribute</strong> – Allows customization of the unique identifier to use for model fetching.
 Defaults to <cite>id</cite>, but can reference any surrogate or candidate key for the table.</p></li>
 </ul>
@@ -1211,9 +1211,9 @@ Defaults to <cite>id</cite>, but can reference any surrogate or candidate key fo
 <li><p><strong>data</strong> – A list of instances to update.  Each should have a value for <cite>self.id_attribute</cite> that exists in the
 collection.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1234,9 +1234,9 @@ collection.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>*filters</strong> – Types for specific filtering operations.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>force_basic_query_mode</strong> – Force list and count to use two queries instead of an analytical window function.</p></li>
 <li><p><strong>**kwargs</strong> – Instance attribute value filters.</p></li>
 </ul>
@@ -1264,11 +1264,11 @@ existing instance exists is the value of an attribute on <cite>data</cite> named
 dictionary containing flags to indicate a more specific set of
 FOR UPDATE flags for the SELECT</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_refresh</strong> – Refresh object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_refresh</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_refresh</span></code></a></p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1293,11 +1293,11 @@ one doesn’t exist.</p>
 existing instance exists is the value of an attribute on <code class="docutils literal notranslate"><span class="pre">data</span></code> named as value of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">id_attribute</span></code>.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a>.</p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a>.</p></li>
 <li><p><strong>auto_commit</strong> – Commit objects before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 <li><p><strong>no_merge</strong> – Skip the usage of optimized Merge statements
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_commit</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_commit</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1318,9 +1318,9 @@ existing instance exists is the value of an attribute on <code class="docutils l
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>*filters</strong> – Types for specific filtering operations.</p></li>
 <li><p><strong>auto_expunge</strong> – Remove object from session before returning. Defaults to
-<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.auto_expunge</span></code></a></p></li>
+<a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.auto_expunge</span></code></a></p></li>
 <li><p><strong>statement</strong> – To facilitate customization of the underlying select query.
-Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemySyncRepository" title="advanced_alchemy.repository.SQLAlchemySyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemySyncRepository.statement</span></code></a></p></li>
+Defaults to <a class="reference internal" href="#advanced_alchemy.repository.SQLAlchemyAsyncRepository" title="advanced_alchemy.repository.SQLAlchemyAsyncRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">SQLAlchemyAsyncRepository.statement</span></code></a></p></li>
 <li><p><strong>**kwargs</strong> – Instance attribute value filters.</p></li>
 </ul>
 </dd>

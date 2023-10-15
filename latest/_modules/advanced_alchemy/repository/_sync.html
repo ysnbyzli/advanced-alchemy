@@ -391,11 +391,11 @@ html.dark {
 </span><span id="1-152"><span class="sd">        Args:</span>
 </span><span id="1-153"><span class="sd">            data: Instance to be added to the collection.</span>
 </span><span id="1-154"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-155"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-155"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-156"><span class="sd">            auto_refresh: Refresh object from session before returning. Defaults to</span>
-</span><span id="1-157"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_refresh &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-157"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_refresh &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-158"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-159"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-159"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-160">
 </span><span id="1-161"><span class="sd">        Returns:</span>
 </span><span id="1-162"><span class="sd">            The added instance.</span>
@@ -418,9 +418,9 @@ html.dark {
 </span><span id="1-179"><span class="sd">        Args:</span>
 </span><span id="1-180"><span class="sd">            data: list of Instances to be added to the collection.</span>
 </span><span id="1-181"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-182"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-182"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-183"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-184"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-184"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-185">
 </span><span id="1-186"><span class="sd">        Returns:</span>
 </span><span id="1-187"><span class="sd">            The added instances.</span>
@@ -444,9 +444,9 @@ html.dark {
 </span><span id="1-205"><span class="sd">        Args:</span>
 </span><span id="1-206"><span class="sd">            item_id: Identifier of instance to be deleted.</span>
 </span><span id="1-207"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-208"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-208"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-209"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-210"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-210"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-211"><span class="sd">            id_attribute: Allows customization of the unique identifier to use for model fetching.</span>
 </span><span id="1-212"><span class="sd">                Defaults to `id`, but can reference any surrogate or candidate key for the table.</span>
 </span><span id="1-213">
@@ -476,9 +476,9 @@ html.dark {
 </span><span id="1-237"><span class="sd">        Args:</span>
 </span><span id="1-238"><span class="sd">            item_ids: Identifier of instance to be deleted.</span>
 </span><span id="1-239"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-240"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-240"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-241"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-242"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-242"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-243"><span class="sd">            id_attribute: Allows customization of the unique identifier to use for model fetching.</span>
 </span><span id="1-244"><span class="sd">                Defaults to `id`, but can reference any surrogate or candidate key for the table.</span>
 </span><span id="1-245"><span class="sd">            chunk_size: Allows customization of the ``insertmanyvalues_max_parameters`` setting for the driver.</span>
@@ -594,9 +594,9 @@ html.dark {
 </span><span id="1-355"><span class="sd">        Args:</span>
 </span><span id="1-356"><span class="sd">            item_id: Identifier of the instance to be retrieved.</span>
 </span><span id="1-357"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-358"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-358"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-359"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-360"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-360"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-361"><span class="sd">            id_attribute: Allows customization of the unique identifier to use for model fetching.</span>
 </span><span id="1-362"><span class="sd">                Defaults to `id`, but can reference any surrogate or candidate key for the table.</span>
 </span><span id="1-363">
@@ -625,9 +625,9 @@ html.dark {
 </span><span id="1-386">
 </span><span id="1-387"><span class="sd">        Args:</span>
 </span><span id="1-388"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-389"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-389"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-390"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-391"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-391"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-392"><span class="sd">            **kwargs: Identifier of the instance to be retrieved.</span>
 </span><span id="1-393">
 </span><span id="1-394"><span class="sd">        Returns:</span>
@@ -654,9 +654,9 @@ html.dark {
 </span><span id="1-415">
 </span><span id="1-416"><span class="sd">        Args:</span>
 </span><span id="1-417"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-418"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-418"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-419"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-420"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-420"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-421"><span class="sd">            **kwargs: Identifier of the instance to be retrieved.</span>
 </span><span id="1-422">
 </span><span id="1-423"><span class="sd">        Returns:</span>
@@ -694,11 +694,11 @@ html.dark {
 </span><span id="1-455"><span class="sd">                dictionary containing flags to indicate a more specific set of</span>
 </span><span id="1-456"><span class="sd">                FOR UPDATE flags for the SELECT</span>
 </span><span id="1-457"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-458"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-458"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-459"><span class="sd">            auto_refresh: Refresh object from session before returning. Defaults to</span>
-</span><span id="1-460"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_refresh &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-460"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_refresh &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-461"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-462"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-462"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-463"><span class="sd">            **kwargs: Identifier of the instance to be retrieved.</span>
 </span><span id="1-464">
 </span><span id="1-465"><span class="sd">        Returns:</span>
@@ -741,11 +741,11 @@ html.dark {
 </span><span id="1-502"><span class="sd">                dictionary containing flags to indicate a more specific set of</span>
 </span><span id="1-503"><span class="sd">                FOR UPDATE flags for the SELECT</span>
 </span><span id="1-504"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-505"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-505"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-506"><span class="sd">            auto_refresh: Refresh object from session before returning. Defaults to</span>
-</span><span id="1-507"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_refresh &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-507"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_refresh &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-508"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-509"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-509"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-510"><span class="sd">            **kwargs: Identifier of the instance to be retrieved.</span>
 </span><span id="1-511">
 </span><span id="1-512"><span class="sd">        Returns:</span>
@@ -794,7 +794,7 @@ html.dark {
 </span><span id="1-555"><span class="sd">        Args:</span>
 </span><span id="1-556"><span class="sd">            *filters: Types for specific filtering operations.</span>
 </span><span id="1-557"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-558"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-558"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-559"><span class="sd">            **kwargs: Instance attribute value filters.</span>
 </span><span id="1-560">
 </span><span id="1-561"><span class="sd">        Returns:</span>
@@ -830,11 +830,11 @@ html.dark {
 </span><span id="1-591"><span class="sd">                dictionary containing flags to indicate a more specific set of</span>
 </span><span id="1-592"><span class="sd">                FOR UPDATE flags for the SELECT</span>
 </span><span id="1-593"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-594"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-594"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-595"><span class="sd">            auto_refresh: Refresh object from session before returning. Defaults to</span>
-</span><span id="1-596"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_refresh &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-596"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_refresh &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-597"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-598"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-598"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-599"><span class="sd">            id_attribute: Allows customization of the unique identifier to use for model fetching.</span>
 </span><span id="1-600"><span class="sd">                Defaults to `id`, but can reference any surrogate or candidate key for the table.</span>
 </span><span id="1-601">
@@ -879,9 +879,9 @@ html.dark {
 </span><span id="1-640"><span class="sd">            data: A list of instances to update.  Each should have a value for `self.id_attribute` that exists in the</span>
 </span><span id="1-641"><span class="sd">                collection.</span>
 </span><span id="1-642"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-643"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-643"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-644"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-645"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-645"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-646">
 </span><span id="1-647"><span class="sd">        Returns:</span>
 </span><span id="1-648"><span class="sd">            The updated instances.</span>
@@ -930,9 +930,9 @@ html.dark {
 </span><span id="1-691"><span class="sd">        Args:</span>
 </span><span id="1-692"><span class="sd">            *filters: Types for specific filtering operations.</span>
 </span><span id="1-693"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-694"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-694"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-695"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-696"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-696"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-697"><span class="sd">            force_basic_query_mode: Force list and count to use two queries instead of an analytical window function.</span>
 </span><span id="1-698"><span class="sd">            **kwargs: Instance attribute value filters.</span>
 </span><span id="1-699">
@@ -983,9 +983,9 @@ html.dark {
 </span><span id="1-744"><span class="sd">        Args:</span>
 </span><span id="1-745"><span class="sd">            *filters: Types for specific filtering operations.</span>
 </span><span id="1-746"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-747"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-747"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-748"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-749"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-749"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-750"><span class="sd">            **kwargs: Instance attribute value filters.</span>
 </span><span id="1-751">
 </span><span id="1-752"><span class="sd">        Returns:</span>
@@ -1019,9 +1019,9 @@ html.dark {
 </span><span id="1-780"><span class="sd">        Args:</span>
 </span><span id="1-781"><span class="sd">            *filters: Types for specific filtering operations.</span>
 </span><span id="1-782"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-783"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-783"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-784"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-785"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-785"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-786"><span class="sd">            **kwargs: Instance attribute value filters.</span>
 </span><span id="1-787">
 </span><span id="1-788"><span class="sd">        Returns:</span>
@@ -1070,11 +1070,11 @@ html.dark {
 </span><span id="1-831"><span class="sd">                dictionary containing flags to indicate a more specific set of</span>
 </span><span id="1-832"><span class="sd">                FOR UPDATE flags for the SELECT</span>
 </span><span id="1-833"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-834"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-834"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-835"><span class="sd">            auto_refresh: Refresh object from session before returning. Defaults to</span>
-</span><span id="1-836"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_refresh &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-836"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_refresh &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-837"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-838"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-838"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-839">
 </span><span id="1-840"><span class="sd">        Returns:</span>
 </span><span id="1-841"><span class="sd">            The updated or created instance.</span>
@@ -1129,11 +1129,11 @@ html.dark {
 </span><span id="1-890"><span class="sd">                existing instance exists is the value of an attribute on ``data`` named as value of</span>
 </span><span id="1-891"><span class="sd">                :attr:`~advanced_alchemy.repository.AbstractAsyncRepository.id_attribute`.</span>
 </span><span id="1-892"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-893"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`.</span>
+</span><span id="1-893"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`.</span>
 </span><span id="1-894"><span class="sd">            auto_commit: Commit objects before returning. Defaults to</span>
-</span><span id="1-895"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-895"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-896"><span class="sd">            no_merge: Skip the usage of optimized Merge statements</span>
-</span><span id="1-897"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_commit &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-897"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_commit &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-898">
 </span><span id="1-899"><span class="sd">        Returns:</span>
 </span><span id="1-900"><span class="sd">            The updated or created instance.</span>
@@ -1183,9 +1183,9 @@ html.dark {
 </span><span id="1-944"><span class="sd">        Args:</span>
 </span><span id="1-945"><span class="sd">            *filters: Types for specific filtering operations.</span>
 </span><span id="1-946"><span class="sd">            auto_expunge: Remove object from session before returning. Defaults to</span>
-</span><span id="1-947"><span class="sd">                :class:`SQLAlchemySyncRepository.auto_expunge &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-947"><span class="sd">                :class:`SQLAlchemyAsyncRepository.auto_expunge &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-948"><span class="sd">            statement: To facilitate customization of the underlying select query.</span>
-</span><span id="1-949"><span class="sd">                Defaults to :class:`SQLAlchemySyncRepository.statement &lt;SQLAlchemySyncRepository&gt;`</span>
+</span><span id="1-949"><span class="sd">                Defaults to :class:`SQLAlchemyAsyncRepository.statement &lt;SQLAlchemyAsyncRepository&gt;`</span>
 </span><span id="1-950"><span class="sd">            **kwargs: Instance attribute value filters.</span>
 </span><span id="1-951">
 </span><span id="1-952"><span class="sd">        Returns:</span>
