@@ -1345,112 +1345,113 @@ html.dark {
 </span><span id="1-1106">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
 </span><span id="1-1107">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
 </span><span id="1-1108">        <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
-</span><span id="1-1109">            <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1110">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1111">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
-</span><span id="1-1112">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1113">
-</span><span id="1-1114">    <span class="k">def</span> <span class="nf">_filter_not_in_collection</span><span class="p">(</span>
-</span><span id="1-1115">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1116">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1117">        <span class="n">values</span><span class="p">:</span> <span class="n">abc</span><span class="o">.</span><span class="n">Collection</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
-</span><span id="1-1118">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1119">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1120">        <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
-</span><span id="1-1121">            <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1122">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1123">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">notin_</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
-</span><span id="1-1124">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1125">
-</span><span id="1-1126">    <span class="k">def</span> <span class="nf">_filter_on_datetime_field</span><span class="p">(</span>
-</span><span id="1-1127">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1128">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1129">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1130">        <span class="n">before</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="1-1131">        <span class="n">after</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="1-1132">        <span class="n">on_or_before</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="1-1133">        <span class="n">on_or_after</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="1-1134">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1135">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1136">        <span class="k">if</span> <span class="n">before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-1137">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&lt;</span> <span class="n">before</span><span class="p">)</span>
-</span><span id="1-1138">        <span class="k">if</span> <span class="n">after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-1139">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&gt;</span> <span class="n">after</span><span class="p">)</span>
-</span><span id="1-1140">        <span class="k">if</span> <span class="n">on_or_before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-1141">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&lt;=</span> <span class="n">on_or_before</span><span class="p">)</span>
-</span><span id="1-1142">        <span class="k">if</span> <span class="n">on_or_after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-1143">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&gt;=</span> <span class="n">on_or_after</span><span class="p">)</span>
-</span><span id="1-1144">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1145">
-</span><span id="1-1146">    <span class="k">def</span> <span class="nf">_filter_select_by_kwargs</span><span class="p">(</span>
-</span><span id="1-1147">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1148">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1149">        <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-</span><span id="1-1150">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1151">        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span id="1-1152">            <span class="n">statement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_by_where</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>  <span class="c1"># pyright: ignore[reportGeneralTypeIssues]</span>
-</span><span id="1-1153">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1154">
-</span><span id="1-1155">    <span class="k">def</span> <span class="nf">_filter_by_expression</span><span class="p">(</span>
-</span><span id="1-1156">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1157">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1158">        <span class="n">expression</span><span class="p">:</span> <span class="n">ColumnElement</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span>
-</span><span id="1-1159">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1160">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
-</span><span id="1-1161">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1162">
-</span><span id="1-1163">    <span class="k">def</span> <span class="nf">_filter_by_where</span><span class="p">(</span>
-</span><span id="1-1164">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1165">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1166">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1167">        <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-</span><span id="1-1168">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1169">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1170">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">==</span> <span class="n">value</span><span class="p">)</span>
-</span><span id="1-1171">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1172">
-</span><span id="1-1173">    <span class="k">def</span> <span class="nf">_filter_by_like</span><span class="p">(</span>
-</span><span id="1-1174">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1175">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1176">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1177">        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="1-1178">        <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-</span><span id="1-1179">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1180">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1181">        <span class="n">search_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">%&quot;</span>
-</span><span id="1-1182">        <span class="k">if</span> <span class="n">ignore_case</span><span class="p">:</span>
-</span><span id="1-1183">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">ilike</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
-</span><span id="1-1184">        <span class="k">else</span><span class="p">:</span>
-</span><span id="1-1185">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
-</span><span id="1-1186">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1187">
-</span><span id="1-1188">    <span class="k">def</span> <span class="nf">_filter_by_not_like</span><span class="p">(</span>
-</span><span id="1-1189">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1190">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1191">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1192">        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="1-1193">        <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-</span><span id="1-1194">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1195">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1196">        <span class="n">search_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">%&quot;</span>
-</span><span id="1-1197">        <span class="k">if</span> <span class="n">ignore_case</span><span class="p">:</span>
-</span><span id="1-1198">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">not_ilike</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
-</span><span id="1-1199">        <span class="k">else</span><span class="p">:</span>
-</span><span id="1-1200">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">not_like</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
-</span><span id="1-1201">        <span class="k">return</span> <span class="n">statement</span>
-</span><span id="1-1202">
-</span><span id="1-1203">    <span class="k">def</span> <span class="nf">_order_by</span><span class="p">(</span>
-</span><span id="1-1204">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-1205">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
-</span><span id="1-1206">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
-</span><span id="1-1207">        <span class="n">sort_desc</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="1-1208">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
-</span><span id="1-1209">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
-</span><span id="1-1210">        <span class="k">if</span> <span class="n">sort_desc</span><span class="p">:</span>
-</span><span id="1-1211">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span>
-</span><span id="1-1212">        <span class="k">else</span><span class="p">:</span>
-</span><span id="1-1213">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">asc</span><span class="p">())</span>
-</span><span id="1-1214">        <span class="k">return</span> <span class="n">statement</span></div>
+</span><span id="1-1109">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;1=-1&quot;</span><span class="p">))</span>
+</span><span id="1-1110">            <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1111">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1112">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+</span><span id="1-1113">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1114">
+</span><span id="1-1115">    <span class="k">def</span> <span class="nf">_filter_not_in_collection</span><span class="p">(</span>
+</span><span id="1-1116">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1117">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1118">        <span class="n">values</span><span class="p">:</span> <span class="n">abc</span><span class="o">.</span><span class="n">Collection</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+</span><span id="1-1119">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1120">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1121">        <span class="k">if</span> <span class="ow">not</span> <span class="n">values</span><span class="p">:</span>
+</span><span id="1-1122">            <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1123">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1124">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">notin_</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+</span><span id="1-1125">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1126">
+</span><span id="1-1127">    <span class="k">def</span> <span class="nf">_filter_on_datetime_field</span><span class="p">(</span>
+</span><span id="1-1128">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1129">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1130">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1131">        <span class="n">before</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="1-1132">        <span class="n">after</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="1-1133">        <span class="n">on_or_before</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="1-1134">        <span class="n">on_or_after</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="1-1135">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1136">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1137">        <span class="k">if</span> <span class="n">before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-1138">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&lt;</span> <span class="n">before</span><span class="p">)</span>
+</span><span id="1-1139">        <span class="k">if</span> <span class="n">after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-1140">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&gt;</span> <span class="n">after</span><span class="p">)</span>
+</span><span id="1-1141">        <span class="k">if</span> <span class="n">on_or_before</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-1142">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&lt;=</span> <span class="n">on_or_before</span><span class="p">)</span>
+</span><span id="1-1143">        <span class="k">if</span> <span class="n">on_or_after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-1144">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">&gt;=</span> <span class="n">on_or_after</span><span class="p">)</span>
+</span><span id="1-1145">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1146">
+</span><span id="1-1147">    <span class="k">def</span> <span class="nf">_filter_select_by_kwargs</span><span class="p">(</span>
+</span><span id="1-1148">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1149">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1150">        <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+</span><span id="1-1151">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1152">        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span id="1-1153">            <span class="n">statement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_by_where</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>  <span class="c1"># pyright: ignore[reportGeneralTypeIssues]</span>
+</span><span id="1-1154">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1155">
+</span><span id="1-1156">    <span class="k">def</span> <span class="nf">_filter_by_expression</span><span class="p">(</span>
+</span><span id="1-1157">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1158">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1159">        <span class="n">expression</span><span class="p">:</span> <span class="n">ColumnElement</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span>
+</span><span id="1-1160">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1161">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+</span><span id="1-1162">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1163">
+</span><span id="1-1164">    <span class="k">def</span> <span class="nf">_filter_by_where</span><span class="p">(</span>
+</span><span id="1-1165">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1166">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1167">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1168">        <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+</span><span id="1-1169">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1170">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1171">        <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span> <span class="o">==</span> <span class="n">value</span><span class="p">)</span>
+</span><span id="1-1172">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1173">
+</span><span id="1-1174">    <span class="k">def</span> <span class="nf">_filter_by_like</span><span class="p">(</span>
+</span><span id="1-1175">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1176">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1177">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1178">        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="1-1179">        <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+</span><span id="1-1180">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1181">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1182">        <span class="n">search_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">%&quot;</span>
+</span><span id="1-1183">        <span class="k">if</span> <span class="n">ignore_case</span><span class="p">:</span>
+</span><span id="1-1184">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">ilike</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
+</span><span id="1-1185">        <span class="k">else</span><span class="p">:</span>
+</span><span id="1-1186">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
+</span><span id="1-1187">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1188">
+</span><span id="1-1189">    <span class="k">def</span> <span class="nf">_filter_by_not_like</span><span class="p">(</span>
+</span><span id="1-1190">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1191">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1192">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1193">        <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="1-1194">        <span class="n">ignore_case</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+</span><span id="1-1195">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1196">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1197">        <span class="n">search_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">%&quot;</span>
+</span><span id="1-1198">        <span class="k">if</span> <span class="n">ignore_case</span><span class="p">:</span>
+</span><span id="1-1199">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">not_ilike</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
+</span><span id="1-1200">        <span class="k">else</span><span class="p">:</span>
+</span><span id="1-1201">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">not_like</span><span class="p">(</span><span class="n">search_text</span><span class="p">))</span>
+</span><span id="1-1202">        <span class="k">return</span> <span class="n">statement</span>
+</span><span id="1-1203">
+</span><span id="1-1204">    <span class="k">def</span> <span class="nf">_order_by</span><span class="p">(</span>
+</span><span id="1-1205">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-1206">        <span class="n">statement</span><span class="p">:</span> <span class="n">StatementLambdaElement</span><span class="p">,</span>
+</span><span id="1-1207">        <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">InstrumentedAttribute</span><span class="p">,</span>
+</span><span id="1-1208">        <span class="n">sort_desc</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="1-1209">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatementLambdaElement</span><span class="p">:</span>
+</span><span id="1-1210">        <span class="n">field</span> <span class="o">=</span> <span class="n">get_instrumented_attr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+</span><span id="1-1211">        <span class="k">if</span> <span class="n">sort_desc</span><span class="p">:</span>
+</span><span id="1-1212">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span>
+</span><span id="1-1213">        <span class="k">else</span><span class="p">:</span>
+</span><span id="1-1214">            <span class="n">statement</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">asc</span><span class="p">())</span>
+</span><span id="1-1215">        <span class="k">return</span> <span class="n">statement</span></div>
 </span></pre></div>
         </article>
         
