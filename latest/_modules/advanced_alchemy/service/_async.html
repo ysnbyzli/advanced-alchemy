@@ -695,7 +695,7 @@ html.dark {
 </span><span id="1-456"><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="1-457">        <span class="n">match_fields</span> <span class="o">=</span> <span class="n">match_fields</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">match_fields</span>
 </span><span id="1-458">        <span class="n">validated_model</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_model</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="s2">&quot;create&quot;</span><span class="p">)</span>
-</span><span id="1-459">        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span>
+</span><span id="1-459">        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_or_upsert</span><span class="p">(</span>
 </span><span id="1-460">            <span class="n">match_fields</span><span class="o">=</span><span class="n">match_fields</span><span class="p">,</span>
 </span><span id="1-461">            <span class="n">upsert</span><span class="o">=</span><span class="n">upsert</span><span class="p">,</span>
 </span><span id="1-462">            <span class="n">attribute_names</span><span class="o">=</span><span class="n">attribute_names</span><span class="p">,</span>
