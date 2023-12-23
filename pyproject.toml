@@ -36,7 +36,7 @@ license = {text = "MIT"}
 name = "advanced_alchemy"
 readme = "README.md"
 requires-python = ">=3.8"
-version = "0.5.5"
+version = "0.6.1"
 
 [project.urls]
 Changelog = "https://docs.advanced-alchemy.jolt.rs/latest/changelog"
@@ -271,6 +271,7 @@ warn_unused_ignores = true
 disable_error_code = "attr-defined"
 disallow_untyped_decorators = false
 module = "tests.*"
+warn_unused_ignores = false
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
