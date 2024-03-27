@@ -907,205 +907,216 @@ html.dark {
 </span><span id="1-663">    <span class="k">else</span><span class="p">:</span>
 </span><span id="1-664">        <span class="n">pool</span><span class="o">.</span><span class="n">_dialect</span> <span class="o">=</span> <span class="n">dialect</span>
 </span><span id="1-665">
-</span><span id="1-666">    <span class="c1"># create engine.</span>
-</span><span id="1-667">    <span class="k">if</span> <span class="ow">not</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="s2">&quot;future&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-</span><span id="1-668">        <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
-</span><span id="1-669">            <span class="s2">&quot;The &#39;future&#39; parameter passed to &quot;</span>
-</span><span id="1-670">            <span class="s2">&quot;create_engine() may only be set to True.&quot;</span>
-</span><span id="1-671">        <span class="p">)</span>
-</span><span id="1-672">
-</span><span id="1-673">    <span class="n">engineclass</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">Engine</span>
-</span><span id="1-674">
-</span><span id="1-675">    <span class="n">engine_args</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="1-676">    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">util</span><span class="o">.</span><span class="n">get_cls_kwargs</span><span class="p">(</span><span class="n">engineclass</span><span class="p">):</span>
-</span><span id="1-677">        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span id="1-678">            <span class="n">engine_args</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-</span><span id="1-679">
-</span><span id="1-680">    <span class="c1"># internal flags used by the test suite for instrumenting / proxying</span>
-</span><span id="1-681">    <span class="c1"># engines with mocks etc.</span>
-</span><span id="1-682">    <span class="n">_initialize</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;_initialize&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="1-666">    <span class="k">if</span> <span class="p">(</span>
+</span><span id="1-667">        <span class="nb">hasattr</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;_is_asyncio&quot;</span><span class="p">)</span>
+</span><span id="1-668">        <span class="ow">and</span> <span class="n">pool</span><span class="o">.</span><span class="n">_is_asyncio</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">dialect</span><span class="o">.</span><span class="n">is_async</span>
+</span><span id="1-669">    <span class="p">):</span>
+</span><span id="1-670">        <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
+</span><span id="1-671">            <span class="sa">f</span><span class="s2">&quot;Pool class </span><span class="si">{</span><span class="n">pool</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> cannot be &quot;</span>
+</span><span id="1-672">            <span class="sa">f</span><span class="s2">&quot;used with </span><span class="si">{</span><span class="s1">&#39;non-&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">dialect</span><span class="o">.</span><span class="n">is_async</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="1-673">            <span class="s2">&quot;asyncio engine&quot;</span><span class="p">,</span>
+</span><span id="1-674">            <span class="n">code</span><span class="o">=</span><span class="s2">&quot;pcls&quot;</span><span class="p">,</span>
+</span><span id="1-675">        <span class="p">)</span>
+</span><span id="1-676">
+</span><span id="1-677">    <span class="c1"># create engine.</span>
+</span><span id="1-678">    <span class="k">if</span> <span class="ow">not</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="s2">&quot;future&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+</span><span id="1-679">        <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
+</span><span id="1-680">            <span class="s2">&quot;The &#39;future&#39; parameter passed to &quot;</span>
+</span><span id="1-681">            <span class="s2">&quot;create_engine() may only be set to True.&quot;</span>
+</span><span id="1-682">        <span class="p">)</span>
 </span><span id="1-683">
-</span><span id="1-684">    <span class="c1"># all kwargs should be consumed</span>
-</span><span id="1-685">    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span id="1-686">        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-</span><span id="1-687">            <span class="s2">&quot;Invalid argument(s) </span><span class="si">%s</span><span class="s2"> sent to create_engine(), &quot;</span>
-</span><span id="1-688">            <span class="s2">&quot;using configuration </span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">.  Please check that the &quot;</span>
-</span><span id="1-689">            <span class="s2">&quot;keyword arguments are appropriate for this combination &quot;</span>
-</span><span id="1-690">            <span class="s2">&quot;of components.&quot;</span>
-</span><span id="1-691">            <span class="o">%</span> <span class="p">(</span>
-</span><span id="1-692">                <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">),</span>
-</span><span id="1-693">                <span class="n">dialect</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-</span><span id="1-694">                <span class="n">pool</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-</span><span id="1-695">                <span class="n">engineclass</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-</span><span id="1-696">            <span class="p">)</span>
-</span><span id="1-697">        <span class="p">)</span>
-</span><span id="1-698">
-</span><span id="1-699">    <span class="n">engine</span> <span class="o">=</span> <span class="n">engineclass</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="o">**</span><span class="n">engine_args</span><span class="p">)</span>
-</span><span id="1-700">
-</span><span id="1-701">    <span class="k">if</span> <span class="n">_initialize</span><span class="p">:</span>
-</span><span id="1-702">        <span class="n">do_on_connect</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">on_connect_url</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-</span><span id="1-703">        <span class="k">if</span> <span class="n">do_on_connect</span><span class="p">:</span>
-</span><span id="1-704">
-</span><span id="1-705">            <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span>
-</span><span id="1-706">                <span class="n">dbapi_connection</span><span class="p">:</span> <span class="n">DBAPIConnection</span><span class="p">,</span>
-</span><span id="1-707">                <span class="n">connection_record</span><span class="p">:</span> <span class="n">ConnectionPoolEntry</span><span class="p">,</span>
-</span><span id="1-708">            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-709">                <span class="k">assert</span> <span class="n">do_on_connect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-</span><span id="1-710">                <span class="n">do_on_connect</span><span class="p">(</span><span class="n">dbapi_connection</span><span class="p">)</span>
+</span><span id="1-684">    <span class="n">engineclass</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">Engine</span>
+</span><span id="1-685">
+</span><span id="1-686">    <span class="n">engine_args</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="1-687">    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">util</span><span class="o">.</span><span class="n">get_cls_kwargs</span><span class="p">(</span><span class="n">engineclass</span><span class="p">):</span>
+</span><span id="1-688">        <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span id="1-689">            <span class="n">engine_args</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">pop_kwarg</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span><span id="1-690">
+</span><span id="1-691">    <span class="c1"># internal flags used by the test suite for instrumenting / proxying</span>
+</span><span id="1-692">    <span class="c1"># engines with mocks etc.</span>
+</span><span id="1-693">    <span class="n">_initialize</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;_initialize&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="1-694">
+</span><span id="1-695">    <span class="c1"># all kwargs should be consumed</span>
+</span><span id="1-696">    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span id="1-697">        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+</span><span id="1-698">            <span class="s2">&quot;Invalid argument(s) </span><span class="si">%s</span><span class="s2"> sent to create_engine(), &quot;</span>
+</span><span id="1-699">            <span class="s2">&quot;using configuration </span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">.  Please check that the &quot;</span>
+</span><span id="1-700">            <span class="s2">&quot;keyword arguments are appropriate for this combination &quot;</span>
+</span><span id="1-701">            <span class="s2">&quot;of components.&quot;</span>
+</span><span id="1-702">            <span class="o">%</span> <span class="p">(</span>
+</span><span id="1-703">                <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">),</span>
+</span><span id="1-704">                <span class="n">dialect</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+</span><span id="1-705">                <span class="n">pool</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+</span><span id="1-706">                <span class="n">engineclass</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+</span><span id="1-707">            <span class="p">)</span>
+</span><span id="1-708">        <span class="p">)</span>
+</span><span id="1-709">
+</span><span id="1-710">    <span class="n">engine</span> <span class="o">=</span> <span class="n">engineclass</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="o">**</span><span class="n">engine_args</span><span class="p">)</span>
 </span><span id="1-711">
-</span><span id="1-712">            <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">on_connect</span><span class="p">)</span>
-</span><span id="1-713">
-</span><span id="1-714">        <span class="n">builtin_on_connect</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">_builtin_onconnect</span><span class="p">()</span>
-</span><span id="1-715">        <span class="k">if</span> <span class="n">builtin_on_connect</span><span class="p">:</span>
-</span><span id="1-716">            <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">builtin_on_connect</span><span class="p">)</span>
-</span><span id="1-717">
-</span><span id="1-718">        <span class="k">def</span> <span class="nf">first_connect</span><span class="p">(</span>
-</span><span id="1-719">            <span class="n">dbapi_connection</span><span class="p">:</span> <span class="n">DBAPIConnection</span><span class="p">,</span>
-</span><span id="1-720">            <span class="n">connection_record</span><span class="p">:</span> <span class="n">ConnectionPoolEntry</span><span class="p">,</span>
-</span><span id="1-721">        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="1-722">            <span class="n">c</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span>
-</span><span id="1-723">                <span class="n">engine</span><span class="p">,</span>
-</span><span id="1-724">                <span class="n">connection</span><span class="o">=</span><span class="n">_AdhocProxiedConnection</span><span class="p">(</span>
-</span><span id="1-725">                    <span class="n">dbapi_connection</span><span class="p">,</span> <span class="n">connection_record</span>
-</span><span id="1-726">                <span class="p">),</span>
-</span><span id="1-727">                <span class="n">_has_events</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="1-728">                <span class="c1"># reconnecting will be a reentrant condition, so if the</span>
-</span><span id="1-729">                <span class="c1"># connection goes away, Connection is then closed</span>
-</span><span id="1-730">                <span class="n">_allow_revalidate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="1-731">                <span class="c1"># dont trigger the autobegin sequence</span>
-</span><span id="1-732">                <span class="c1"># within the up front dialect checks</span>
-</span><span id="1-733">                <span class="n">_allow_autobegin</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="1-734">            <span class="p">)</span>
-</span><span id="1-735">            <span class="n">c</span><span class="o">.</span><span class="n">_execution_options</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">EMPTY_DICT</span>
-</span><span id="1-736">
-</span><span id="1-737">            <span class="k">try</span><span class="p">:</span>
-</span><span id="1-738">                <span class="n">dialect</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</span><span id="1-739">            <span class="k">finally</span><span class="p">:</span>
-</span><span id="1-740">                <span class="c1"># note that &quot;invalidated&quot; and &quot;closed&quot; are mutually</span>
-</span><span id="1-741">                <span class="c1"># exclusive in 1.4 Connection.</span>
-</span><span id="1-742">                <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">invalidated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
-</span><span id="1-743">                    <span class="c1"># transaction is rolled back otherwise, tested by</span>
-</span><span id="1-744">                    <span class="c1"># test/dialect/postgresql/test_dialect.py</span>
-</span><span id="1-745">                    <span class="c1"># ::MiscBackendTest::test_initial_transaction_state</span>
-</span><span id="1-746">                    <span class="n">dialect</span><span class="o">.</span><span class="n">do_rollback</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+</span><span id="1-712">    <span class="k">if</span> <span class="n">_initialize</span><span class="p">:</span>
+</span><span id="1-713">        <span class="n">do_on_connect</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">on_connect_url</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span><span id="1-714">        <span class="k">if</span> <span class="n">do_on_connect</span><span class="p">:</span>
+</span><span id="1-715">
+</span><span id="1-716">            <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span>
+</span><span id="1-717">                <span class="n">dbapi_connection</span><span class="p">:</span> <span class="n">DBAPIConnection</span><span class="p">,</span>
+</span><span id="1-718">                <span class="n">connection_record</span><span class="p">:</span> <span class="n">ConnectionPoolEntry</span><span class="p">,</span>
+</span><span id="1-719">            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-720">                <span class="k">assert</span> <span class="n">do_on_connect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="1-721">                <span class="n">do_on_connect</span><span class="p">(</span><span class="n">dbapi_connection</span><span class="p">)</span>
+</span><span id="1-722">
+</span><span id="1-723">            <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">on_connect</span><span class="p">)</span>
+</span><span id="1-724">
+</span><span id="1-725">        <span class="n">builtin_on_connect</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">_builtin_onconnect</span><span class="p">()</span>
+</span><span id="1-726">        <span class="k">if</span> <span class="n">builtin_on_connect</span><span class="p">:</span>
+</span><span id="1-727">            <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">builtin_on_connect</span><span class="p">)</span>
+</span><span id="1-728">
+</span><span id="1-729">        <span class="k">def</span> <span class="nf">first_connect</span><span class="p">(</span>
+</span><span id="1-730">            <span class="n">dbapi_connection</span><span class="p">:</span> <span class="n">DBAPIConnection</span><span class="p">,</span>
+</span><span id="1-731">            <span class="n">connection_record</span><span class="p">:</span> <span class="n">ConnectionPoolEntry</span><span class="p">,</span>
+</span><span id="1-732">        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="1-733">            <span class="n">c</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span>
+</span><span id="1-734">                <span class="n">engine</span><span class="p">,</span>
+</span><span id="1-735">                <span class="n">connection</span><span class="o">=</span><span class="n">_AdhocProxiedConnection</span><span class="p">(</span>
+</span><span id="1-736">                    <span class="n">dbapi_connection</span><span class="p">,</span> <span class="n">connection_record</span>
+</span><span id="1-737">                <span class="p">),</span>
+</span><span id="1-738">                <span class="n">_has_events</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="1-739">                <span class="c1"># reconnecting will be a reentrant condition, so if the</span>
+</span><span id="1-740">                <span class="c1"># connection goes away, Connection is then closed</span>
+</span><span id="1-741">                <span class="n">_allow_revalidate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="1-742">                <span class="c1"># dont trigger the autobegin sequence</span>
+</span><span id="1-743">                <span class="c1"># within the up front dialect checks</span>
+</span><span id="1-744">                <span class="n">_allow_autobegin</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="1-745">            <span class="p">)</span>
+</span><span id="1-746">            <span class="n">c</span><span class="o">.</span><span class="n">_execution_options</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">EMPTY_DICT</span>
 </span><span id="1-747">
-</span><span id="1-748">        <span class="c1"># previously, the &quot;first_connect&quot; event was used here, which was then</span>
-</span><span id="1-749">        <span class="c1"># scaled back if the &quot;on_connect&quot; handler were present.  now,</span>
-</span><span id="1-750">        <span class="c1"># since &quot;on_connect&quot; is virtually always present, just use</span>
-</span><span id="1-751">        <span class="c1"># &quot;connect&quot; event with once_unless_exception in all cases so that</span>
-</span><span id="1-752">        <span class="c1"># the connection event flow is consistent in all cases.</span>
-</span><span id="1-753">        <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span>
-</span><span id="1-754">            <span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">first_connect</span><span class="p">,</span> <span class="n">_once_unless_exception</span><span class="o">=</span><span class="kc">True</span>
-</span><span id="1-755">        <span class="p">)</span>
-</span><span id="1-756">
-</span><span id="1-757">    <span class="n">dialect_cls</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-</span><span id="1-758">    <span class="k">if</span> <span class="n">entrypoint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">dialect_cls</span><span class="p">:</span>
-</span><span id="1-759">        <span class="n">entrypoint</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-</span><span id="1-760">
-</span><span id="1-761">    <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">plugins</span><span class="p">:</span>
-</span><span id="1-762">        <span class="n">plugin</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-</span><span id="1-763">
-</span><span id="1-764">    <span class="k">return</span> <span class="n">engine</span>
-</span><span id="1-765">
-</span><span id="1-766">
-</span><span id="1-767"><span class="k">def</span> <span class="nf">engine_from_config</span><span class="p">(</span>
-</span><span id="1-768">    <span class="n">configuration</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sqlalchemy.&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-</span><span id="1-769"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Engine</span><span class="p">:</span>
-</span><span id="1-770"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new Engine instance using a configuration dictionary.</span>
+</span><span id="1-748">            <span class="k">try</span><span class="p">:</span>
+</span><span id="1-749">                <span class="n">dialect</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span><span id="1-750">            <span class="k">finally</span><span class="p">:</span>
+</span><span id="1-751">                <span class="c1"># note that &quot;invalidated&quot; and &quot;closed&quot; are mutually</span>
+</span><span id="1-752">                <span class="c1"># exclusive in 1.4 Connection.</span>
+</span><span id="1-753">                <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">invalidated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">c</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+</span><span id="1-754">                    <span class="c1"># transaction is rolled back otherwise, tested by</span>
+</span><span id="1-755">                    <span class="c1"># test/dialect/postgresql/test_dialect.py</span>
+</span><span id="1-756">                    <span class="c1"># ::MiscBackendTest::test_initial_transaction_state</span>
+</span><span id="1-757">                    <span class="n">dialect</span><span class="o">.</span><span class="n">do_rollback</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+</span><span id="1-758">
+</span><span id="1-759">        <span class="c1"># previously, the &quot;first_connect&quot; event was used here, which was then</span>
+</span><span id="1-760">        <span class="c1"># scaled back if the &quot;on_connect&quot; handler were present.  now,</span>
+</span><span id="1-761">        <span class="c1"># since &quot;on_connect&quot; is virtually always present, just use</span>
+</span><span id="1-762">        <span class="c1"># &quot;connect&quot; event with once_unless_exception in all cases so that</span>
+</span><span id="1-763">        <span class="c1"># the connection event flow is consistent in all cases.</span>
+</span><span id="1-764">        <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span>
+</span><span id="1-765">            <span class="n">pool</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">first_connect</span><span class="p">,</span> <span class="n">_once_unless_exception</span><span class="o">=</span><span class="kc">True</span>
+</span><span id="1-766">        <span class="p">)</span>
+</span><span id="1-767">
+</span><span id="1-768">    <span class="n">dialect_cls</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</span><span id="1-769">    <span class="k">if</span> <span class="n">entrypoint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">dialect_cls</span><span class="p">:</span>
+</span><span id="1-770">        <span class="n">entrypoint</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 </span><span id="1-771">
-</span><span id="1-772"><span class="sd">    The dictionary is typically produced from a config file.</span>
-</span><span id="1-773">
-</span><span id="1-774"><span class="sd">    The keys of interest to ``engine_from_config()`` should be prefixed, e.g.</span>
-</span><span id="1-775"><span class="sd">    ``sqlalchemy.url``, ``sqlalchemy.echo``, etc.  The &#39;prefix&#39; argument</span>
-</span><span id="1-776"><span class="sd">    indicates the prefix to be searched for.  Each matching key (after the</span>
-</span><span id="1-777"><span class="sd">    prefix is stripped) is treated as though it were the corresponding keyword</span>
-</span><span id="1-778"><span class="sd">    argument to a :func:`_sa.create_engine` call.</span>
-</span><span id="1-779">
-</span><span id="1-780"><span class="sd">    The only required key is (assuming the default prefix) ``sqlalchemy.url``,</span>
-</span><span id="1-781"><span class="sd">    which provides the :ref:`database URL &lt;database_urls&gt;`.</span>
+</span><span id="1-772">    <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">plugins</span><span class="p">:</span>
+</span><span id="1-773">        <span class="n">plugin</span><span class="o">.</span><span class="n">engine_created</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</span><span id="1-774">
+</span><span id="1-775">    <span class="k">return</span> <span class="n">engine</span>
+</span><span id="1-776">
+</span><span id="1-777">
+</span><span id="1-778"><span class="k">def</span> <span class="nf">engine_from_config</span><span class="p">(</span>
+</span><span id="1-779">    <span class="n">configuration</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sqlalchemy.&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+</span><span id="1-780"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Engine</span><span class="p">:</span>
+</span><span id="1-781"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new Engine instance using a configuration dictionary.</span>
 </span><span id="1-782">
-</span><span id="1-783"><span class="sd">    A select set of keyword arguments will be &quot;coerced&quot; to their</span>
-</span><span id="1-784"><span class="sd">    expected type based on string values.    The set of arguments</span>
-</span><span id="1-785"><span class="sd">    is extensible per-dialect using the ``engine_config_types`` accessor.</span>
-</span><span id="1-786">
-</span><span id="1-787"><span class="sd">    :param configuration: A dictionary (typically produced from a config file,</span>
-</span><span id="1-788"><span class="sd">        but this is not a requirement).  Items whose keys start with the value</span>
-</span><span id="1-789"><span class="sd">        of &#39;prefix&#39; will have that prefix stripped, and will then be passed to</span>
-</span><span id="1-790"><span class="sd">        :func:`_sa.create_engine`.</span>
-</span><span id="1-791">
-</span><span id="1-792"><span class="sd">    :param prefix: Prefix to match and then strip from keys</span>
-</span><span id="1-793"><span class="sd">        in &#39;configuration&#39;.</span>
-</span><span id="1-794">
-</span><span id="1-795"><span class="sd">    :param kwargs: Each keyword argument to ``engine_from_config()`` itself</span>
-</span><span id="1-796"><span class="sd">        overrides the corresponding item taken from the &#39;configuration&#39;</span>
-</span><span id="1-797"><span class="sd">        dictionary.  Keyword arguments should *not* be prefixed.</span>
-</span><span id="1-798">
-</span><span id="1-799"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="1-800">
-</span><span id="1-801">    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="1-802">        <span class="n">key</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="p">:]:</span> <span class="n">configuration</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</span><span id="1-803">        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">configuration</span>
-</span><span id="1-804">        <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
-</span><span id="1-805">    <span class="p">}</span>
-</span><span id="1-806">    <span class="n">options</span><span class="p">[</span><span class="s2">&quot;_coerce_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="1-807">    <span class="n">options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-</span><span id="1-808">    <span class="n">url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
-</span><span id="1-809">    <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-</span><span id="1-810">
+</span><span id="1-783"><span class="sd">    The dictionary is typically produced from a config file.</span>
+</span><span id="1-784">
+</span><span id="1-785"><span class="sd">    The keys of interest to ``engine_from_config()`` should be prefixed, e.g.</span>
+</span><span id="1-786"><span class="sd">    ``sqlalchemy.url``, ``sqlalchemy.echo``, etc.  The &#39;prefix&#39; argument</span>
+</span><span id="1-787"><span class="sd">    indicates the prefix to be searched for.  Each matching key (after the</span>
+</span><span id="1-788"><span class="sd">    prefix is stripped) is treated as though it were the corresponding keyword</span>
+</span><span id="1-789"><span class="sd">    argument to a :func:`_sa.create_engine` call.</span>
+</span><span id="1-790">
+</span><span id="1-791"><span class="sd">    The only required key is (assuming the default prefix) ``sqlalchemy.url``,</span>
+</span><span id="1-792"><span class="sd">    which provides the :ref:`database URL &lt;database_urls&gt;`.</span>
+</span><span id="1-793">
+</span><span id="1-794"><span class="sd">    A select set of keyword arguments will be &quot;coerced&quot; to their</span>
+</span><span id="1-795"><span class="sd">    expected type based on string values.    The set of arguments</span>
+</span><span id="1-796"><span class="sd">    is extensible per-dialect using the ``engine_config_types`` accessor.</span>
+</span><span id="1-797">
+</span><span id="1-798"><span class="sd">    :param configuration: A dictionary (typically produced from a config file,</span>
+</span><span id="1-799"><span class="sd">        but this is not a requirement).  Items whose keys start with the value</span>
+</span><span id="1-800"><span class="sd">        of &#39;prefix&#39; will have that prefix stripped, and will then be passed to</span>
+</span><span id="1-801"><span class="sd">        :func:`_sa.create_engine`.</span>
+</span><span id="1-802">
+</span><span id="1-803"><span class="sd">    :param prefix: Prefix to match and then strip from keys</span>
+</span><span id="1-804"><span class="sd">        in &#39;configuration&#39;.</span>
+</span><span id="1-805">
+</span><span id="1-806"><span class="sd">    :param kwargs: Each keyword argument to ``engine_from_config()`` itself</span>
+</span><span id="1-807"><span class="sd">        overrides the corresponding item taken from the &#39;configuration&#39;</span>
+</span><span id="1-808"><span class="sd">        dictionary.  Keyword arguments should *not* be prefixed.</span>
+</span><span id="1-809">
+</span><span id="1-810"><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="1-811">
-</span><span id="1-812"><span class="nd">@overload</span>
-</span><span id="1-813"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span>
-</span><span id="1-814">    <span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span>
-</span><span id="1-815">    <span class="o">*</span><span class="p">,</span>
-</span><span id="1-816">    <span class="n">poolclass</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Pool</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-817">    <span class="n">logging_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-818">    <span class="n">pre_ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-819">    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-820">    <span class="n">recycle</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-821">    <span class="n">reset_on_return</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ResetStyleArgType</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-822">    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-823">    <span class="n">use_lifo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
-</span><span id="1-824">    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-</span><span id="1-825"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span> <span class="o">...</span>
-</span><span id="1-826">
-</span><span id="1-827">
-</span><span id="1-828"><span class="nd">@overload</span>
-</span><span id="1-829"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span> <span class="o">...</span>
-</span><span id="1-830">
-</span><span id="1-831">
-</span><span id="1-832"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span>
-</span><span id="1-833"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a pool instance from the given url.</span>
-</span><span id="1-834">
-</span><span id="1-835"><span class="sd">    If ``poolclass`` is not provided the pool class used</span>
-</span><span id="1-836"><span class="sd">    is selected using the dialect specified in the URL.</span>
+</span><span id="1-812">    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="1-813">        <span class="n">key</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="p">:]:</span> <span class="n">configuration</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</span><span id="1-814">        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">configuration</span>
+</span><span id="1-815">        <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+</span><span id="1-816">    <span class="p">}</span>
+</span><span id="1-817">    <span class="n">options</span><span class="p">[</span><span class="s2">&quot;_coerce_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="1-818">    <span class="n">options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="1-819">    <span class="n">url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
+</span><span id="1-820">    <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</span><span id="1-821">
+</span><span id="1-822">
+</span><span id="1-823"><span class="nd">@overload</span>
+</span><span id="1-824"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span>
+</span><span id="1-825">    <span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span>
+</span><span id="1-826">    <span class="o">*</span><span class="p">,</span>
+</span><span id="1-827">    <span class="n">poolclass</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Pool</span><span class="p">]]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-828">    <span class="n">logging_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-829">    <span class="n">pre_ping</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-830">    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-831">    <span class="n">recycle</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-832">    <span class="n">reset_on_return</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ResetStyleArgType</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-833">    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-834">    <span class="n">use_lifo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span>
+</span><span id="1-835">    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+</span><span id="1-836"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span> <span class="o">...</span>
 </span><span id="1-837">
-</span><span id="1-838"><span class="sd">    The arguments passed to :func:`_sa.create_pool_from_url` are</span>
-</span><span id="1-839"><span class="sd">    identical to the pool argument passed to the :func:`_sa.create_engine`</span>
-</span><span id="1-840"><span class="sd">    function.</span>
+</span><span id="1-838">
+</span><span id="1-839"><span class="nd">@overload</span>
+</span><span id="1-840"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span> <span class="o">...</span>
 </span><span id="1-841">
-</span><span id="1-842"><span class="sd">    .. versionadded:: 2.0.10</span>
-</span><span id="1-843"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="1-844">
-</span><span id="1-845">    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">_pool_translate_kwargs</span><span class="p">:</span>
-</span><span id="1-846">        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-</span><span id="1-847">            <span class="n">kwargs</span><span class="p">[</span><span class="n">_pool_translate_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="1-842">
+</span><span id="1-843"><span class="k">def</span> <span class="nf">create_pool_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">URL</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pool</span><span class="p">:</span>
+</span><span id="1-844"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a pool instance from the given url.</span>
+</span><span id="1-845">
+</span><span id="1-846"><span class="sd">    If ``poolclass`` is not provided the pool class used</span>
+</span><span id="1-847"><span class="sd">    is selected using the dialect specified in the URL.</span>
 </span><span id="1-848">
-</span><span id="1-849">    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">_initialize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="1-850">    <span class="k">return</span> <span class="n">engine</span><span class="o">.</span><span class="n">pool</span>
-</span><span id="1-851">
+</span><span id="1-849"><span class="sd">    The arguments passed to :func:`_sa.create_pool_from_url` are</span>
+</span><span id="1-850"><span class="sd">    identical to the pool argument passed to the :func:`_sa.create_engine`</span>
+</span><span id="1-851"><span class="sd">    function.</span>
 </span><span id="1-852">
-</span><span id="1-853"><span class="n">_pool_translate_kwargs</span> <span class="o">=</span> <span class="n">immutabledict</span><span class="p">(</span>
-</span><span id="1-854">    <span class="p">{</span>
-</span><span id="1-855">        <span class="s2">&quot;logging_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_logging_name&quot;</span><span class="p">,</span>
-</span><span id="1-856">        <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="s2">&quot;echo_pool&quot;</span><span class="p">,</span>
-</span><span id="1-857">        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">,</span>
-</span><span id="1-858">        <span class="s2">&quot;recycle&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">,</span>
-</span><span id="1-859">        <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_events&quot;</span><span class="p">,</span>  <span class="c1"># deprecated</span>
-</span><span id="1-860">        <span class="s2">&quot;reset_on_return&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_reset_on_return&quot;</span><span class="p">,</span>
-</span><span id="1-861">        <span class="s2">&quot;pre_ping&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">,</span>
-</span><span id="1-862">        <span class="s2">&quot;use_lifo&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_use_lifo&quot;</span><span class="p">,</span>
-</span><span id="1-863">    <span class="p">}</span>
-</span><span id="1-864"><span class="p">)</span>
+</span><span id="1-853"><span class="sd">    .. versionadded:: 2.0.10</span>
+</span><span id="1-854"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="1-855">
+</span><span id="1-856">    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">_pool_translate_kwargs</span><span class="p">:</span>
+</span><span id="1-857">        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+</span><span id="1-858">            <span class="n">kwargs</span><span class="p">[</span><span class="n">_pool_translate_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span id="1-859">
+</span><span id="1-860">    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">_initialize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="1-861">    <span class="k">return</span> <span class="n">engine</span><span class="o">.</span><span class="n">pool</span>
+</span><span id="1-862">
+</span><span id="1-863">
+</span><span id="1-864"><span class="n">_pool_translate_kwargs</span> <span class="o">=</span> <span class="n">immutabledict</span><span class="p">(</span>
+</span><span id="1-865">    <span class="p">{</span>
+</span><span id="1-866">        <span class="s2">&quot;logging_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_logging_name&quot;</span><span class="p">,</span>
+</span><span id="1-867">        <span class="s2">&quot;echo&quot;</span><span class="p">:</span> <span class="s2">&quot;echo_pool&quot;</span><span class="p">,</span>
+</span><span id="1-868">        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_timeout&quot;</span><span class="p">,</span>
+</span><span id="1-869">        <span class="s2">&quot;recycle&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_recycle&quot;</span><span class="p">,</span>
+</span><span id="1-870">        <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_events&quot;</span><span class="p">,</span>  <span class="c1"># deprecated</span>
+</span><span id="1-871">        <span class="s2">&quot;reset_on_return&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_reset_on_return&quot;</span><span class="p">,</span>
+</span><span id="1-872">        <span class="s2">&quot;pre_ping&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_pre_ping&quot;</span><span class="p">,</span>
+</span><span id="1-873">        <span class="s2">&quot;use_lifo&quot;</span><span class="p">:</span> <span class="s2">&quot;pool_use_lifo&quot;</span><span class="p">,</span>
+</span><span id="1-874">    <span class="p">}</span>
+</span><span id="1-875"><span class="p">)</span>
 </span></pre></div>
         </article>
         

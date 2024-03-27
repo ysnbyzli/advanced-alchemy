@@ -3010,22 +3010,22 @@ html.dark {
 </span><span id="1-2766"><span class="sd">    dimension parameter will generally assume single-dimensional behaviors.</span>
 </span><span id="1-2767">
 </span><span id="1-2768"><span class="sd">    SQL expressions of type :class:`_types.ARRAY` have support for &quot;index&quot; and</span>
-</span><span id="1-2769"><span class="sd">    &quot;slice&quot; behavior.  The Python ``[]`` operator works normally here, given</span>
-</span><span id="1-2770"><span class="sd">    integer indexes or slices.  Arrays default to 1-based indexing.</span>
-</span><span id="1-2771"><span class="sd">    The operator produces binary expression</span>
-</span><span id="1-2772"><span class="sd">    constructs which will produce the appropriate SQL, both for</span>
-</span><span id="1-2773"><span class="sd">    SELECT statements::</span>
+</span><span id="1-2769"><span class="sd">    &quot;slice&quot; behavior.  The ``[]`` operator produces expression</span>
+</span><span id="1-2770"><span class="sd">    constructs which will produce the appropriate SQL, both for</span>
+</span><span id="1-2771"><span class="sd">    SELECT statements::</span>
+</span><span id="1-2772">
+</span><span id="1-2773"><span class="sd">        select(mytable.c.data[5], mytable.c.data[2:7])</span>
 </span><span id="1-2774">
-</span><span id="1-2775"><span class="sd">        select(mytable.c.data[5], mytable.c.data[2:7])</span>
-</span><span id="1-2776">
-</span><span id="1-2777"><span class="sd">    as well as UPDATE statements when the :meth:`_expression.Update.values`</span>
-</span><span id="1-2778"><span class="sd">    method</span>
-</span><span id="1-2779"><span class="sd">    is used::</span>
-</span><span id="1-2780">
-</span><span id="1-2781"><span class="sd">        mytable.update().values({</span>
-</span><span id="1-2782"><span class="sd">            mytable.c.data[5]: 7,</span>
-</span><span id="1-2783"><span class="sd">            mytable.c.data[2:7]: [1, 2, 3]</span>
-</span><span id="1-2784"><span class="sd">        })</span>
+</span><span id="1-2775"><span class="sd">    as well as UPDATE statements when the :meth:`_expression.Update.values`</span>
+</span><span id="1-2776"><span class="sd">    method is used::</span>
+</span><span id="1-2777">
+</span><span id="1-2778"><span class="sd">        mytable.update().values({</span>
+</span><span id="1-2779"><span class="sd">            mytable.c.data[5]: 7,</span>
+</span><span id="1-2780"><span class="sd">            mytable.c.data[2:7]: [1, 2, 3]</span>
+</span><span id="1-2781"><span class="sd">        })</span>
+</span><span id="1-2782">
+</span><span id="1-2783"><span class="sd">    Indexed access is one-based by default;</span>
+</span><span id="1-2784"><span class="sd">    for zero-based index conversion, set :paramref:`_types.ARRAY.zero_indexes`.</span>
 </span><span id="1-2785">
 </span><span id="1-2786"><span class="sd">    The :class:`_types.ARRAY` type also provides for the operators</span>
 </span><span id="1-2787"><span class="sd">    :meth:`.types.ARRAY.Comparator.any` and</span>
@@ -3071,209 +3071,209 @@ html.dark {
 </span><span id="1-2827"><span class="w">    </span><span class="sd">&quot;&quot;&quot;If True, Python zero-based indexes should be interpreted as one-based</span>
 </span><span id="1-2828"><span class="sd">    on the SQL expression side.&quot;&quot;&quot;</span>
 </span><span id="1-2829">
-</span><span id="1-2830">    <span class="k">class</span> <span class="nc">Comparator</span><span class="p">(</span>
-</span><span id="1-2831">        <span class="n">Indexable</span><span class="o">.</span><span class="n">Comparator</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
-</span><span id="1-2832">        <span class="n">Concatenable</span><span class="o">.</span><span class="n">Comparator</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
-</span><span id="1-2833">    <span class="p">):</span>
-</span><span id="1-2834"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Define comparison operations for :class:`_types.ARRAY`.</span>
-</span><span id="1-2835">
-</span><span id="1-2836"><span class="sd">        More operators are available on the dialect-specific form</span>
-</span><span id="1-2837"><span class="sd">        of this type.  See :class:`.postgresql.ARRAY.Comparator`.</span>
+</span><span id="1-2830">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="1-2831">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="1-2832">        <span class="n">item_type</span><span class="p">:</span> <span class="n">_TypeEngineArgument</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+</span><span id="1-2833">        <span class="n">as_tuple</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="1-2834">        <span class="n">dimensions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="1-2835">        <span class="n">zero_indexes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="1-2836">    <span class="p">):</span>
+</span><span id="1-2837"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an :class:`_types.ARRAY`.</span>
 </span><span id="1-2838">
-</span><span id="1-2839"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="1-2839"><span class="sd">        E.g.::</span>
 </span><span id="1-2840">
-</span><span id="1-2841">        <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+</span><span id="1-2841"><span class="sd">          Column(&#39;myarray&#39;, ARRAY(Integer))</span>
 </span><span id="1-2842">
-</span><span id="1-2843">        <span class="nb">type</span><span class="p">:</span> <span class="n">ARRAY</span>
+</span><span id="1-2843"><span class="sd">        Arguments are:</span>
 </span><span id="1-2844">
-</span><span id="1-2845">        <span class="k">def</span> <span class="nf">_setup_getitem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-</span><span id="1-2846">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
-</span><span id="1-2847">
-</span><span id="1-2848">            <span class="n">return_type</span><span class="p">:</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
+</span><span id="1-2845"><span class="sd">        :param item_type: The data type of items of this array. Note that</span>
+</span><span id="1-2846"><span class="sd">          dimensionality is irrelevant here, so multi-dimensional arrays like</span>
+</span><span id="1-2847"><span class="sd">          ``INTEGER[][]``, are constructed as ``ARRAY(Integer)``, not as</span>
+</span><span id="1-2848"><span class="sd">          ``ARRAY(ARRAY(Integer))`` or such.</span>
 </span><span id="1-2849">
-</span><span id="1-2850">            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
-</span><span id="1-2851">                <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span>
-</span><span id="1-2852">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">zero_indexes</span><span class="p">:</span>
-</span><span id="1-2853">                    <span class="n">index</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
-</span><span id="1-2854">                <span class="n">slice_</span> <span class="o">=</span> <span class="n">Slice</span><span class="p">(</span>
-</span><span id="1-2855">                    <span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="o">.</span><span class="n">key</span>
-</span><span id="1-2856">                <span class="p">)</span>
-</span><span id="1-2857">                <span class="k">return</span> <span class="n">operators</span><span class="o">.</span><span class="n">getitem</span><span class="p">,</span> <span class="n">slice_</span><span class="p">,</span> <span class="n">return_type</span>
-</span><span id="1-2858">            <span class="k">else</span><span class="p">:</span>
-</span><span id="1-2859">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">zero_indexes</span><span class="p">:</span>
-</span><span id="1-2860">                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="1-2861">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="1-2862">                    <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span>
-</span><span id="1-2863">                <span class="k">else</span><span class="p">:</span>
-</span><span id="1-2864">                    <span class="n">adapt_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
-</span><span id="1-2865">                    <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span>
-</span><span id="1-2866">                        <span class="n">arr_type</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="o">**</span><span class="n">adapt_kw</span>
-</span><span id="1-2867">                    <span class="p">)</span>
-</span><span id="1-2868">
-</span><span id="1-2869">                <span class="k">return</span> <span class="n">operators</span><span class="o">.</span><span class="n">getitem</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">return_type</span>
-</span><span id="1-2870">
-</span><span id="1-2871">        <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-</span><span id="1-2872"><span class="w">            </span><span class="sd">&quot;&quot;&quot;``ARRAY.contains()`` not implemented for the base ARRAY type.</span>
-</span><span id="1-2873"><span class="sd">            Use the dialect-specific ARRAY type.</span>
-</span><span id="1-2874">
-</span><span id="1-2875"><span class="sd">            .. seealso::</span>
-</span><span id="1-2876">
-</span><span id="1-2877"><span class="sd">                :class:`_postgresql.ARRAY` - PostgreSQL specific version.</span>
-</span><span id="1-2878"><span class="sd">            &quot;&quot;&quot;</span>
-</span><span id="1-2879">            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-</span><span id="1-2880">                <span class="s2">&quot;ARRAY.contains() not implemented for the base &quot;</span>
-</span><span id="1-2881">                <span class="s2">&quot;ARRAY type; please use the dialect-specific ARRAY type&quot;</span>
-</span><span id="1-2882">            <span class="p">)</span>
-</span><span id="1-2883">
-</span><span id="1-2884">        <span class="nd">@util</span><span class="o">.</span><span class="n">preload_module</span><span class="p">(</span><span class="s2">&quot;sqlalchemy.sql.elements&quot;</span><span class="p">)</span>
-</span><span id="1-2885">        <span class="k">def</span> <span class="nf">any</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="1-2886"><span class="w">            </span><span class="sd">&quot;&quot;&quot;Return ``other operator ANY (array)`` clause.</span>
-</span><span id="1-2887">
-</span><span id="1-2888"><span class="sd">            .. legacy:: This method is an :class:`_types.ARRAY` - specific</span>
-</span><span id="1-2889"><span class="sd">                construct that is now superseded by the :func:`_sql.any_`</span>
-</span><span id="1-2890"><span class="sd">                function, which features a different calling style. The</span>
-</span><span id="1-2891"><span class="sd">                :func:`_sql.any_` function is also mirrored at the method level</span>
-</span><span id="1-2892"><span class="sd">                via the :meth:`_sql.ColumnOperators.any_` method.</span>
-</span><span id="1-2893">
-</span><span id="1-2894"><span class="sd">            Usage of array-specific :meth:`_types.ARRAY.Comparator.any`</span>
-</span><span id="1-2895"><span class="sd">            is as follows::</span>
-</span><span id="1-2896">
-</span><span id="1-2897"><span class="sd">                from sqlalchemy.sql import operators</span>
-</span><span id="1-2898">
-</span><span id="1-2899"><span class="sd">                conn.execute(</span>
-</span><span id="1-2900"><span class="sd">                    select(table.c.data).where(</span>
-</span><span id="1-2901"><span class="sd">                            table.c.data.any(7, operator=operators.lt)</span>
-</span><span id="1-2902"><span class="sd">                        )</span>
-</span><span id="1-2903"><span class="sd">                )</span>
-</span><span id="1-2904">
-</span><span id="1-2905"><span class="sd">            :param other: expression to be compared</span>
-</span><span id="1-2906"><span class="sd">            :param operator: an operator object from the</span>
-</span><span id="1-2907"><span class="sd">             :mod:`sqlalchemy.sql.operators`</span>
-</span><span id="1-2908"><span class="sd">             package, defaults to :func:`.operators.eq`.</span>
-</span><span id="1-2909">
-</span><span id="1-2910"><span class="sd">            .. seealso::</span>
-</span><span id="1-2911">
-</span><span id="1-2912"><span class="sd">                :func:`_expression.any_`</span>
-</span><span id="1-2913">
-</span><span id="1-2914"><span class="sd">                :meth:`.types.ARRAY.Comparator.all`</span>
-</span><span id="1-2915">
-</span><span id="1-2916"><span class="sd">            &quot;&quot;&quot;</span>
-</span><span id="1-2917">            <span class="n">elements</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">preloaded</span><span class="o">.</span><span class="n">sql_elements</span>
-</span><span id="1-2918">            <span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span> <span class="k">if</span> <span class="n">operator</span> <span class="k">else</span> <span class="n">operators</span><span class="o">.</span><span class="n">eq</span>
-</span><span id="1-2919">
-</span><span id="1-2920">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
-</span><span id="1-2921">
-</span><span id="1-2922">            <span class="k">return</span> <span class="n">elements</span><span class="o">.</span><span class="n">CollectionAggregate</span><span class="o">.</span><span class="n">_create_any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">operate</span><span class="p">(</span>
-</span><span id="1-2923">                <span class="n">operators</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">operator</span><span class="p">),</span>
-</span><span id="1-2924">                <span class="n">coercions</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span>
-</span><span id="1-2925">                    <span class="n">roles</span><span class="o">.</span><span class="n">BinaryElementRole</span><span class="p">,</span>
-</span><span id="1-2926">                    <span class="n">element</span><span class="o">=</span><span class="n">other</span><span class="p">,</span>
-</span><span id="1-2927">                    <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span>
-</span><span id="1-2928">                    <span class="n">expr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span>
-</span><span id="1-2929">                    <span class="n">bindparam_type</span><span class="o">=</span><span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span><span class="p">,</span>
-</span><span id="1-2930">                <span class="p">),</span>
-</span><span id="1-2931">            <span class="p">)</span>
-</span><span id="1-2932">
-</span><span id="1-2933">        <span class="nd">@util</span><span class="o">.</span><span class="n">preload_module</span><span class="p">(</span><span class="s2">&quot;sqlalchemy.sql.elements&quot;</span><span class="p">)</span>
-</span><span id="1-2934">        <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="1-2935"><span class="w">            </span><span class="sd">&quot;&quot;&quot;Return ``other operator ALL (array)`` clause.</span>
-</span><span id="1-2936">
-</span><span id="1-2937"><span class="sd">            .. legacy:: This method is an :class:`_types.ARRAY` - specific</span>
-</span><span id="1-2938"><span class="sd">                construct that is now superseded by the :func:`_sql.all_`</span>
-</span><span id="1-2939"><span class="sd">                function, which features a different calling style. The</span>
-</span><span id="1-2940"><span class="sd">                :func:`_sql.all_` function is also mirrored at the method level</span>
-</span><span id="1-2941"><span class="sd">                via the :meth:`_sql.ColumnOperators.all_` method.</span>
-</span><span id="1-2942">
-</span><span id="1-2943"><span class="sd">            Usage of array-specific :meth:`_types.ARRAY.Comparator.all`</span>
-</span><span id="1-2944"><span class="sd">            is as follows::</span>
-</span><span id="1-2945">
-</span><span id="1-2946"><span class="sd">                from sqlalchemy.sql import operators</span>
-</span><span id="1-2947">
-</span><span id="1-2948"><span class="sd">                conn.execute(</span>
-</span><span id="1-2949"><span class="sd">                    select(table.c.data).where(</span>
-</span><span id="1-2950"><span class="sd">                            table.c.data.all(7, operator=operators.lt)</span>
-</span><span id="1-2951"><span class="sd">                        )</span>
-</span><span id="1-2952"><span class="sd">                )</span>
-</span><span id="1-2953">
-</span><span id="1-2954"><span class="sd">            :param other: expression to be compared</span>
-</span><span id="1-2955"><span class="sd">            :param operator: an operator object from the</span>
-</span><span id="1-2956"><span class="sd">             :mod:`sqlalchemy.sql.operators`</span>
-</span><span id="1-2957"><span class="sd">             package, defaults to :func:`.operators.eq`.</span>
-</span><span id="1-2958">
-</span><span id="1-2959"><span class="sd">            .. seealso::</span>
-</span><span id="1-2960">
-</span><span id="1-2961"><span class="sd">                :func:`_expression.all_`</span>
-</span><span id="1-2962">
-</span><span id="1-2963"><span class="sd">                :meth:`.types.ARRAY.Comparator.any`</span>
-</span><span id="1-2964">
-</span><span id="1-2965"><span class="sd">            &quot;&quot;&quot;</span>
-</span><span id="1-2966">            <span class="n">elements</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">preloaded</span><span class="o">.</span><span class="n">sql_elements</span>
-</span><span id="1-2967">            <span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span> <span class="k">if</span> <span class="n">operator</span> <span class="k">else</span> <span class="n">operators</span><span class="o">.</span><span class="n">eq</span>
-</span><span id="1-2968">
-</span><span id="1-2969">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
-</span><span id="1-2970">
-</span><span id="1-2971">            <span class="k">return</span> <span class="n">elements</span><span class="o">.</span><span class="n">CollectionAggregate</span><span class="o">.</span><span class="n">_create_all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">operate</span><span class="p">(</span>
-</span><span id="1-2972">                <span class="n">operators</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">operator</span><span class="p">),</span>
-</span><span id="1-2973">                <span class="n">coercions</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span>
-</span><span id="1-2974">                    <span class="n">roles</span><span class="o">.</span><span class="n">BinaryElementRole</span><span class="p">,</span>
-</span><span id="1-2975">                    <span class="n">element</span><span class="o">=</span><span class="n">other</span><span class="p">,</span>
-</span><span id="1-2976">                    <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span>
-</span><span id="1-2977">                    <span class="n">expr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span>
-</span><span id="1-2978">                    <span class="n">bindparam_type</span><span class="o">=</span><span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span><span class="p">,</span>
-</span><span id="1-2979">                <span class="p">),</span>
-</span><span id="1-2980">            <span class="p">)</span>
-</span><span id="1-2981">
-</span><span id="1-2982">    <span class="n">comparator_factory</span> <span class="o">=</span> <span class="n">Comparator</span>
-</span><span id="1-2983">
-</span><span id="1-2984">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="1-2985">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="1-2986">        <span class="n">item_type</span><span class="p">:</span> <span class="n">_TypeEngineArgument</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
-</span><span id="1-2987">        <span class="n">as_tuple</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="1-2988">        <span class="n">dimensions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="1-2989">        <span class="n">zero_indexes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-</span><span id="1-2990">    <span class="p">):</span>
-</span><span id="1-2991"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an :class:`_types.ARRAY`.</span>
+</span><span id="1-2850"><span class="sd">        :param as_tuple=False: Specify whether return results</span>
+</span><span id="1-2851"><span class="sd">          should be converted to tuples from lists.  This parameter is</span>
+</span><span id="1-2852"><span class="sd">          not generally needed as a Python list corresponds well</span>
+</span><span id="1-2853"><span class="sd">          to a SQL array.</span>
+</span><span id="1-2854">
+</span><span id="1-2855"><span class="sd">        :param dimensions: if non-None, the ARRAY will assume a fixed</span>
+</span><span id="1-2856"><span class="sd">         number of dimensions.   This impacts how the array is declared</span>
+</span><span id="1-2857"><span class="sd">         on the database, how it goes about interpreting Python and</span>
+</span><span id="1-2858"><span class="sd">         result values, as well as how expression behavior in conjunction</span>
+</span><span id="1-2859"><span class="sd">         with the &quot;getitem&quot; operator works.  See the description at</span>
+</span><span id="1-2860"><span class="sd">         :class:`_types.ARRAY` for additional detail.</span>
+</span><span id="1-2861">
+</span><span id="1-2862"><span class="sd">        :param zero_indexes=False: when True, index values will be converted</span>
+</span><span id="1-2863"><span class="sd">         between Python zero-based and SQL one-based indexes, e.g.</span>
+</span><span id="1-2864"><span class="sd">         a value of one will be added to all index values before passing</span>
+</span><span id="1-2865"><span class="sd">         to the database.</span>
+</span><span id="1-2866">
+</span><span id="1-2867"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="1-2868">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="n">ARRAY</span><span class="p">):</span>
+</span><span id="1-2869">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+</span><span id="1-2870">                <span class="s2">&quot;Do not nest ARRAY types; ARRAY(basetype) &quot;</span>
+</span><span id="1-2871">                <span class="s2">&quot;handles multi-dimensional arrays of basetype&quot;</span>
+</span><span id="1-2872">            <span class="p">)</span>
+</span><span id="1-2873">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+</span><span id="1-2874">            <span class="n">item_type</span> <span class="o">=</span> <span class="n">item_type</span><span class="p">()</span>
+</span><span id="1-2875">        <span class="bp">self</span><span class="o">.</span><span class="n">item_type</span> <span class="o">=</span> <span class="n">item_type</span>
+</span><span id="1-2876">        <span class="bp">self</span><span class="o">.</span><span class="n">as_tuple</span> <span class="o">=</span> <span class="n">as_tuple</span>
+</span><span id="1-2877">        <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">dimensions</span>
+</span><span id="1-2878">        <span class="bp">self</span><span class="o">.</span><span class="n">zero_indexes</span> <span class="o">=</span> <span class="n">zero_indexes</span>
+</span><span id="1-2879">
+</span><span id="1-2880">    <span class="k">class</span> <span class="nc">Comparator</span><span class="p">(</span>
+</span><span id="1-2881">        <span class="n">Indexable</span><span class="o">.</span><span class="n">Comparator</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+</span><span id="1-2882">        <span class="n">Concatenable</span><span class="o">.</span><span class="n">Comparator</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]],</span>
+</span><span id="1-2883">    <span class="p">):</span>
+</span><span id="1-2884"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Define comparison operations for :class:`_types.ARRAY`.</span>
+</span><span id="1-2885">
+</span><span id="1-2886"><span class="sd">        More operators are available on the dialect-specific form</span>
+</span><span id="1-2887"><span class="sd">        of this type.  See :class:`.postgresql.ARRAY.Comparator`.</span>
+</span><span id="1-2888">
+</span><span id="1-2889"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="1-2890">
+</span><span id="1-2891">        <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+</span><span id="1-2892">
+</span><span id="1-2893">        <span class="nb">type</span><span class="p">:</span> <span class="n">ARRAY</span>
+</span><span id="1-2894">
+</span><span id="1-2895">        <span class="k">def</span> <span class="nf">_setup_getitem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</span><span id="1-2896">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
+</span><span id="1-2897">
+</span><span id="1-2898">            <span class="n">return_type</span><span class="p">:</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
+</span><span id="1-2899">
+</span><span id="1-2900">            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+</span><span id="1-2901">                <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span>
+</span><span id="1-2902">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">zero_indexes</span><span class="p">:</span>
+</span><span id="1-2903">                    <span class="n">index</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
+</span><span id="1-2904">                <span class="n">slice_</span> <span class="o">=</span> <span class="n">Slice</span><span class="p">(</span>
+</span><span id="1-2905">                    <span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="o">.</span><span class="n">key</span>
+</span><span id="1-2906">                <span class="p">)</span>
+</span><span id="1-2907">                <span class="k">return</span> <span class="n">operators</span><span class="o">.</span><span class="n">getitem</span><span class="p">,</span> <span class="n">slice_</span><span class="p">,</span> <span class="n">return_type</span>
+</span><span id="1-2908">            <span class="k">else</span><span class="p">:</span>
+</span><span id="1-2909">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">zero_indexes</span><span class="p">:</span>
+</span><span id="1-2910">                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="1-2911">                <span class="k">if</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="1-2912">                    <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span>
+</span><span id="1-2913">                <span class="k">else</span><span class="p">:</span>
+</span><span id="1-2914">                    <span class="n">adapt_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+</span><span id="1-2915">                    <span class="n">return_type</span> <span class="o">=</span> <span class="n">arr_type</span><span class="o">.</span><span class="n">adapt</span><span class="p">(</span>
+</span><span id="1-2916">                        <span class="n">arr_type</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="o">**</span><span class="n">adapt_kw</span>
+</span><span id="1-2917">                    <span class="p">)</span>
+</span><span id="1-2918">
+</span><span id="1-2919">                <span class="k">return</span> <span class="n">operators</span><span class="o">.</span><span class="n">getitem</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">return_type</span>
+</span><span id="1-2920">
+</span><span id="1-2921">        <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span><span id="1-2922"><span class="w">            </span><span class="sd">&quot;&quot;&quot;``ARRAY.contains()`` not implemented for the base ARRAY type.</span>
+</span><span id="1-2923"><span class="sd">            Use the dialect-specific ARRAY type.</span>
+</span><span id="1-2924">
+</span><span id="1-2925"><span class="sd">            .. seealso::</span>
+</span><span id="1-2926">
+</span><span id="1-2927"><span class="sd">                :class:`_postgresql.ARRAY` - PostgreSQL specific version.</span>
+</span><span id="1-2928"><span class="sd">            &quot;&quot;&quot;</span>
+</span><span id="1-2929">            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+</span><span id="1-2930">                <span class="s2">&quot;ARRAY.contains() not implemented for the base &quot;</span>
+</span><span id="1-2931">                <span class="s2">&quot;ARRAY type; please use the dialect-specific ARRAY type&quot;</span>
+</span><span id="1-2932">            <span class="p">)</span>
+</span><span id="1-2933">
+</span><span id="1-2934">        <span class="nd">@util</span><span class="o">.</span><span class="n">preload_module</span><span class="p">(</span><span class="s2">&quot;sqlalchemy.sql.elements&quot;</span><span class="p">)</span>
+</span><span id="1-2935">        <span class="k">def</span> <span class="nf">any</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="1-2936"><span class="w">            </span><span class="sd">&quot;&quot;&quot;Return ``other operator ANY (array)`` clause.</span>
+</span><span id="1-2937">
+</span><span id="1-2938"><span class="sd">            .. legacy:: This method is an :class:`_types.ARRAY` - specific</span>
+</span><span id="1-2939"><span class="sd">                construct that is now superseded by the :func:`_sql.any_`</span>
+</span><span id="1-2940"><span class="sd">                function, which features a different calling style. The</span>
+</span><span id="1-2941"><span class="sd">                :func:`_sql.any_` function is also mirrored at the method level</span>
+</span><span id="1-2942"><span class="sd">                via the :meth:`_sql.ColumnOperators.any_` method.</span>
+</span><span id="1-2943">
+</span><span id="1-2944"><span class="sd">            Usage of array-specific :meth:`_types.ARRAY.Comparator.any`</span>
+</span><span id="1-2945"><span class="sd">            is as follows::</span>
+</span><span id="1-2946">
+</span><span id="1-2947"><span class="sd">                from sqlalchemy.sql import operators</span>
+</span><span id="1-2948">
+</span><span id="1-2949"><span class="sd">                conn.execute(</span>
+</span><span id="1-2950"><span class="sd">                    select(table.c.data).where(</span>
+</span><span id="1-2951"><span class="sd">                            table.c.data.any(7, operator=operators.lt)</span>
+</span><span id="1-2952"><span class="sd">                        )</span>
+</span><span id="1-2953"><span class="sd">                )</span>
+</span><span id="1-2954">
+</span><span id="1-2955"><span class="sd">            :param other: expression to be compared</span>
+</span><span id="1-2956"><span class="sd">            :param operator: an operator object from the</span>
+</span><span id="1-2957"><span class="sd">             :mod:`sqlalchemy.sql.operators`</span>
+</span><span id="1-2958"><span class="sd">             package, defaults to :func:`.operators.eq`.</span>
+</span><span id="1-2959">
+</span><span id="1-2960"><span class="sd">            .. seealso::</span>
+</span><span id="1-2961">
+</span><span id="1-2962"><span class="sd">                :func:`_expression.any_`</span>
+</span><span id="1-2963">
+</span><span id="1-2964"><span class="sd">                :meth:`.types.ARRAY.Comparator.all`</span>
+</span><span id="1-2965">
+</span><span id="1-2966"><span class="sd">            &quot;&quot;&quot;</span>
+</span><span id="1-2967">            <span class="n">elements</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">preloaded</span><span class="o">.</span><span class="n">sql_elements</span>
+</span><span id="1-2968">            <span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span> <span class="k">if</span> <span class="n">operator</span> <span class="k">else</span> <span class="n">operators</span><span class="o">.</span><span class="n">eq</span>
+</span><span id="1-2969">
+</span><span id="1-2970">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
+</span><span id="1-2971">
+</span><span id="1-2972">            <span class="k">return</span> <span class="n">elements</span><span class="o">.</span><span class="n">CollectionAggregate</span><span class="o">.</span><span class="n">_create_any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">operate</span><span class="p">(</span>
+</span><span id="1-2973">                <span class="n">operators</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">operator</span><span class="p">),</span>
+</span><span id="1-2974">                <span class="n">coercions</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span>
+</span><span id="1-2975">                    <span class="n">roles</span><span class="o">.</span><span class="n">BinaryElementRole</span><span class="p">,</span>
+</span><span id="1-2976">                    <span class="n">element</span><span class="o">=</span><span class="n">other</span><span class="p">,</span>
+</span><span id="1-2977">                    <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span>
+</span><span id="1-2978">                    <span class="n">expr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span>
+</span><span id="1-2979">                    <span class="n">bindparam_type</span><span class="o">=</span><span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span><span class="p">,</span>
+</span><span id="1-2980">                <span class="p">),</span>
+</span><span id="1-2981">            <span class="p">)</span>
+</span><span id="1-2982">
+</span><span id="1-2983">        <span class="nd">@util</span><span class="o">.</span><span class="n">preload_module</span><span class="p">(</span><span class="s2">&quot;sqlalchemy.sql.elements&quot;</span><span class="p">)</span>
+</span><span id="1-2984">        <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="1-2985"><span class="w">            </span><span class="sd">&quot;&quot;&quot;Return ``other operator ALL (array)`` clause.</span>
+</span><span id="1-2986">
+</span><span id="1-2987"><span class="sd">            .. legacy:: This method is an :class:`_types.ARRAY` - specific</span>
+</span><span id="1-2988"><span class="sd">                construct that is now superseded by the :func:`_sql.all_`</span>
+</span><span id="1-2989"><span class="sd">                function, which features a different calling style. The</span>
+</span><span id="1-2990"><span class="sd">                :func:`_sql.all_` function is also mirrored at the method level</span>
+</span><span id="1-2991"><span class="sd">                via the :meth:`_sql.ColumnOperators.all_` method.</span>
 </span><span id="1-2992">
-</span><span id="1-2993"><span class="sd">        E.g.::</span>
-</span><span id="1-2994">
-</span><span id="1-2995"><span class="sd">          Column(&#39;myarray&#39;, ARRAY(Integer))</span>
-</span><span id="1-2996">
-</span><span id="1-2997"><span class="sd">        Arguments are:</span>
-</span><span id="1-2998">
-</span><span id="1-2999"><span class="sd">        :param item_type: The data type of items of this array. Note that</span>
-</span><span id="1-3000"><span class="sd">          dimensionality is irrelevant here, so multi-dimensional arrays like</span>
-</span><span id="1-3001"><span class="sd">          ``INTEGER[][]``, are constructed as ``ARRAY(Integer)``, not as</span>
-</span><span id="1-3002"><span class="sd">          ``ARRAY(ARRAY(Integer))`` or such.</span>
+</span><span id="1-2993"><span class="sd">            Usage of array-specific :meth:`_types.ARRAY.Comparator.all`</span>
+</span><span id="1-2994"><span class="sd">            is as follows::</span>
+</span><span id="1-2995">
+</span><span id="1-2996"><span class="sd">                from sqlalchemy.sql import operators</span>
+</span><span id="1-2997">
+</span><span id="1-2998"><span class="sd">                conn.execute(</span>
+</span><span id="1-2999"><span class="sd">                    select(table.c.data).where(</span>
+</span><span id="1-3000"><span class="sd">                            table.c.data.all(7, operator=operators.lt)</span>
+</span><span id="1-3001"><span class="sd">                        )</span>
+</span><span id="1-3002"><span class="sd">                )</span>
 </span><span id="1-3003">
-</span><span id="1-3004"><span class="sd">        :param as_tuple=False: Specify whether return results</span>
-</span><span id="1-3005"><span class="sd">          should be converted to tuples from lists.  This parameter is</span>
-</span><span id="1-3006"><span class="sd">          not generally needed as a Python list corresponds well</span>
-</span><span id="1-3007"><span class="sd">          to a SQL array.</span>
+</span><span id="1-3004"><span class="sd">            :param other: expression to be compared</span>
+</span><span id="1-3005"><span class="sd">            :param operator: an operator object from the</span>
+</span><span id="1-3006"><span class="sd">             :mod:`sqlalchemy.sql.operators`</span>
+</span><span id="1-3007"><span class="sd">             package, defaults to :func:`.operators.eq`.</span>
 </span><span id="1-3008">
-</span><span id="1-3009"><span class="sd">        :param dimensions: if non-None, the ARRAY will assume a fixed</span>
-</span><span id="1-3010"><span class="sd">         number of dimensions.   This impacts how the array is declared</span>
-</span><span id="1-3011"><span class="sd">         on the database, how it goes about interpreting Python and</span>
-</span><span id="1-3012"><span class="sd">         result values, as well as how expression behavior in conjunction</span>
-</span><span id="1-3013"><span class="sd">         with the &quot;getitem&quot; operator works.  See the description at</span>
-</span><span id="1-3014"><span class="sd">         :class:`_types.ARRAY` for additional detail.</span>
-</span><span id="1-3015">
-</span><span id="1-3016"><span class="sd">        :param zero_indexes=False: when True, index values will be converted</span>
-</span><span id="1-3017"><span class="sd">         between Python zero-based and SQL one-based indexes, e.g.</span>
-</span><span id="1-3018"><span class="sd">         a value of one will be added to all index values before passing</span>
-</span><span id="1-3019"><span class="sd">         to the database.</span>
+</span><span id="1-3009"><span class="sd">            .. seealso::</span>
+</span><span id="1-3010">
+</span><span id="1-3011"><span class="sd">                :func:`_expression.all_`</span>
+</span><span id="1-3012">
+</span><span id="1-3013"><span class="sd">                :meth:`.types.ARRAY.Comparator.any`</span>
+</span><span id="1-3014">
+</span><span id="1-3015"><span class="sd">            &quot;&quot;&quot;</span>
+</span><span id="1-3016">            <span class="n">elements</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">preloaded</span><span class="o">.</span><span class="n">sql_elements</span>
+</span><span id="1-3017">            <span class="n">operator</span> <span class="o">=</span> <span class="n">operator</span> <span class="k">if</span> <span class="n">operator</span> <span class="k">else</span> <span class="n">operators</span><span class="o">.</span><span class="n">eq</span>
+</span><span id="1-3018">
+</span><span id="1-3019">            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
 </span><span id="1-3020">
-</span><span id="1-3021"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="1-3022">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="n">ARRAY</span><span class="p">):</span>
-</span><span id="1-3023">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-</span><span id="1-3024">                <span class="s2">&quot;Do not nest ARRAY types; ARRAY(basetype) &quot;</span>
-</span><span id="1-3025">                <span class="s2">&quot;handles multi-dimensional arrays of basetype&quot;</span>
-</span><span id="1-3026">            <span class="p">)</span>
-</span><span id="1-3027">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
-</span><span id="1-3028">            <span class="n">item_type</span> <span class="o">=</span> <span class="n">item_type</span><span class="p">()</span>
-</span><span id="1-3029">        <span class="bp">self</span><span class="o">.</span><span class="n">item_type</span> <span class="o">=</span> <span class="n">item_type</span>
-</span><span id="1-3030">        <span class="bp">self</span><span class="o">.</span><span class="n">as_tuple</span> <span class="o">=</span> <span class="n">as_tuple</span>
-</span><span id="1-3031">        <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">dimensions</span>
-</span><span id="1-3032">        <span class="bp">self</span><span class="o">.</span><span class="n">zero_indexes</span> <span class="o">=</span> <span class="n">zero_indexes</span>
+</span><span id="1-3021">            <span class="k">return</span> <span class="n">elements</span><span class="o">.</span><span class="n">CollectionAggregate</span><span class="o">.</span><span class="n">_create_all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">operate</span><span class="p">(</span>
+</span><span id="1-3022">                <span class="n">operators</span><span class="o">.</span><span class="n">mirror</span><span class="p">(</span><span class="n">operator</span><span class="p">),</span>
+</span><span id="1-3023">                <span class="n">coercions</span><span class="o">.</span><span class="n">expect</span><span class="p">(</span>
+</span><span id="1-3024">                    <span class="n">roles</span><span class="o">.</span><span class="n">BinaryElementRole</span><span class="p">,</span>
+</span><span id="1-3025">                    <span class="n">element</span><span class="o">=</span><span class="n">other</span><span class="p">,</span>
+</span><span id="1-3026">                    <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">,</span>
+</span><span id="1-3027">                    <span class="n">expr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span>
+</span><span id="1-3028">                    <span class="n">bindparam_type</span><span class="o">=</span><span class="n">arr_type</span><span class="o">.</span><span class="n">item_type</span><span class="p">,</span>
+</span><span id="1-3029">                <span class="p">),</span>
+</span><span id="1-3030">            <span class="p">)</span>
+</span><span id="1-3031">
+</span><span id="1-3032">    <span class="n">comparator_factory</span> <span class="o">=</span> <span class="n">Comparator</span>
 </span><span id="1-3033">
 </span><span id="1-3034">    <span class="nd">@property</span>
 </span><span id="1-3035">    <span class="k">def</span> <span class="nf">hashable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3905,154 +3905,129 @@ html.dark {
 </span><span id="1-3661">
 </span><span id="1-3662">                <span class="k">return</span> <span class="n">process</span>
 </span><span id="1-3663">
-</span><span id="1-3664">    <span class="k">def</span> <span class="nf">_sentinel_value_resolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dialect</span><span class="p">):</span>
-</span><span id="1-3665"><span class="w">        </span><span class="sd">&quot;&quot;&quot;For the &quot;insertmanyvalues&quot; feature only, return a callable that</span>
-</span><span id="1-3666"><span class="sd">        will receive the uuid object or string</span>
-</span><span id="1-3667"><span class="sd">        as it is normally passed to the DB in the parameter set, after</span>
-</span><span id="1-3668"><span class="sd">        bind_processor() is called.  Convert this value to match</span>
-</span><span id="1-3669"><span class="sd">        what it would be as coming back from a RETURNING or similar</span>
-</span><span id="1-3670"><span class="sd">        statement for the given backend.</span>
+</span><span id="1-3664">
+</span><span id="1-3665"><span class="k">class</span> <span class="nc">UUID</span><span class="p">(</span><span class="n">Uuid</span><span class="p">[</span><span class="n">_UUID_RETURN</span><span class="p">],</span> <span class="n">type_api</span><span class="o">.</span><span class="n">NativeForEmulated</span><span class="p">):</span>
+</span><span id="1-3666"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represent the SQL UUID type.</span>
+</span><span id="1-3667">
+</span><span id="1-3668"><span class="sd">    This is the SQL-native form of the :class:`_types.Uuid` database agnostic</span>
+</span><span id="1-3669"><span class="sd">    datatype, and is backwards compatible with the previous PostgreSQL-only</span>
+</span><span id="1-3670"><span class="sd">    version of ``UUID``.</span>
 </span><span id="1-3671">
-</span><span id="1-3672"><span class="sd">        Individual dialects and drivers may need their own implementations</span>
-</span><span id="1-3673"><span class="sd">        based on how their UUID types send data and how the drivers behave</span>
-</span><span id="1-3674"><span class="sd">        (e.g. pyodbc)</span>
-</span><span id="1-3675">
-</span><span id="1-3676"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="1-3677">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">native_uuid</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">dialect</span><span class="o">.</span><span class="n">supports_native_uuid</span><span class="p">:</span>
-</span><span id="1-3678">            <span class="c1"># dealing entirely with strings going in and out of</span>
-</span><span id="1-3679">            <span class="c1"># CHAR(32)</span>
-</span><span id="1-3680">            <span class="k">return</span> <span class="kc">None</span>
+</span><span id="1-3672"><span class="sd">    The :class:`_sqltypes.UUID` datatype only works on databases that have a</span>
+</span><span id="1-3673"><span class="sd">    SQL datatype named ``UUID``. It will not function for backends which don&#39;t</span>
+</span><span id="1-3674"><span class="sd">    have this exact-named type, including SQL Server. For backend-agnostic UUID</span>
+</span><span id="1-3675"><span class="sd">    values with native support, including for SQL Server&#39;s ``UNIQUEIDENTIFIER``</span>
+</span><span id="1-3676"><span class="sd">    datatype, use the :class:`_sqltypes.Uuid` datatype.</span>
+</span><span id="1-3677">
+</span><span id="1-3678"><span class="sd">    .. versionadded:: 2.0</span>
+</span><span id="1-3679">
+</span><span id="1-3680"><span class="sd">    .. seealso::</span>
 </span><span id="1-3681">
-</span><span id="1-3682">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_uuid</span><span class="p">:</span>
-</span><span id="1-3683">            <span class="c1"># we sent UUID objects and we are getting UUID objects back</span>
-</span><span id="1-3684">            <span class="k">return</span> <span class="kc">None</span>
-</span><span id="1-3685">        <span class="k">else</span><span class="p">:</span>
-</span><span id="1-3686">            <span class="c1"># we sent strings and we are getting UUID objects back</span>
-</span><span id="1-3687">            <span class="k">return</span> <span class="n">_python_UUID</span>
-</span><span id="1-3688">
-</span><span id="1-3689">
-</span><span id="1-3690"><span class="k">class</span> <span class="nc">UUID</span><span class="p">(</span><span class="n">Uuid</span><span class="p">[</span><span class="n">_UUID_RETURN</span><span class="p">],</span> <span class="n">type_api</span><span class="o">.</span><span class="n">NativeForEmulated</span><span class="p">):</span>
-</span><span id="1-3691"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represent the SQL UUID type.</span>
-</span><span id="1-3692">
-</span><span id="1-3693"><span class="sd">    This is the SQL-native form of the :class:`_types.Uuid` database agnostic</span>
-</span><span id="1-3694"><span class="sd">    datatype, and is backwards compatible with the previous PostgreSQL-only</span>
-</span><span id="1-3695"><span class="sd">    version of ``UUID``.</span>
+</span><span id="1-3682"><span class="sd">        :class:`_sqltypes.Uuid`</span>
+</span><span id="1-3683">
+</span><span id="1-3684"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="1-3685">
+</span><span id="1-3686">    <span class="n">__visit_name__</span> <span class="o">=</span> <span class="s2">&quot;UUID&quot;</span>
+</span><span id="1-3687">
+</span><span id="1-3688">    <span class="nd">@overload</span>
+</span><span id="1-3689">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">UUID</span><span class="p">[</span><span class="n">_python_UUID</span><span class="p">],</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="1-3690">
+</span><span id="1-3691">    <span class="nd">@overload</span>
+</span><span id="1-3692">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">UUID</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">):</span> <span class="o">...</span>
+</span><span id="1-3693">
+</span><span id="1-3694">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+</span><span id="1-3695"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a :class:`_sqltypes.UUID` type.</span>
 </span><span id="1-3696">
-</span><span id="1-3697"><span class="sd">    The :class:`_sqltypes.UUID` datatype only works on databases that have a</span>
-</span><span id="1-3698"><span class="sd">    SQL datatype named ``UUID``. It will not function for backends which don&#39;t</span>
-</span><span id="1-3699"><span class="sd">    have this exact-named type, including SQL Server. For backend-agnostic UUID</span>
-</span><span id="1-3700"><span class="sd">    values with native support, including for SQL Server&#39;s ``UNIQUEIDENTIFIER``</span>
-</span><span id="1-3701"><span class="sd">    datatype, use the :class:`_sqltypes.Uuid` datatype.</span>
-</span><span id="1-3702">
-</span><span id="1-3703"><span class="sd">    .. versionadded:: 2.0</span>
-</span><span id="1-3704">
-</span><span id="1-3705"><span class="sd">    .. seealso::</span>
-</span><span id="1-3706">
-</span><span id="1-3707"><span class="sd">        :class:`_sqltypes.Uuid`</span>
-</span><span id="1-3708">
-</span><span id="1-3709"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="1-3710">
-</span><span id="1-3711">    <span class="n">__visit_name__</span> <span class="o">=</span> <span class="s2">&quot;UUID&quot;</span>
+</span><span id="1-3697">
+</span><span id="1-3698"><span class="sd">        :param as_uuid=True: if True, values will be interpreted</span>
+</span><span id="1-3699"><span class="sd">         as Python uuid objects, converting to/from string via the</span>
+</span><span id="1-3700"><span class="sd">         DBAPI.</span>
+</span><span id="1-3701">
+</span><span id="1-3702"><span class="sd">         .. versionchanged: 2.0 ``as_uuid`` now defaults to ``True``.</span>
+</span><span id="1-3703">
+</span><span id="1-3704"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="1-3705">        <span class="bp">self</span><span class="o">.</span><span class="n">as_uuid</span> <span class="o">=</span> <span class="n">as_uuid</span>
+</span><span id="1-3706">        <span class="bp">self</span><span class="o">.</span><span class="n">native_uuid</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="1-3707">
+</span><span id="1-3708">    <span class="nd">@classmethod</span>
+</span><span id="1-3709">    <span class="k">def</span> <span class="nf">adapt_emulated_to_native</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">impl</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span><span id="1-3710">        <span class="n">kw</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;as_uuid&quot;</span><span class="p">,</span> <span class="n">impl</span><span class="o">.</span><span class="n">as_uuid</span><span class="p">)</span>
+</span><span id="1-3711">        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 </span><span id="1-3712">
-</span><span id="1-3713">    <span class="nd">@overload</span>
-</span><span id="1-3714">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">UUID</span><span class="p">[</span><span class="n">_python_UUID</span><span class="p">],</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">True</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">):</span> <span class="o">...</span>
-</span><span id="1-3715">
-</span><span id="1-3716">    <span class="nd">@overload</span>
-</span><span id="1-3717">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">UUID</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span><span class="p">):</span> <span class="o">...</span>
-</span><span id="1-3718">
-</span><span id="1-3719">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_uuid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-</span><span id="1-3720"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a :class:`_sqltypes.UUID` type.</span>
-</span><span id="1-3721">
-</span><span id="1-3722">
-</span><span id="1-3723"><span class="sd">        :param as_uuid=True: if True, values will be interpreted</span>
-</span><span id="1-3724"><span class="sd">         as Python uuid objects, converting to/from string via the</span>
-</span><span id="1-3725"><span class="sd">         DBAPI.</span>
-</span><span id="1-3726">
-</span><span id="1-3727"><span class="sd">         .. versionchanged: 2.0 ``as_uuid`` now defaults to ``True``.</span>
+</span><span id="1-3713">
+</span><span id="1-3714"><span class="n">NULLTYPE</span> <span class="o">=</span> <span class="n">NullType</span><span class="p">()</span>
+</span><span id="1-3715"><span class="n">BOOLEANTYPE</span> <span class="o">=</span> <span class="n">Boolean</span><span class="p">()</span>
+</span><span id="1-3716"><span class="n">STRINGTYPE</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+</span><span id="1-3717"><span class="n">INTEGERTYPE</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">()</span>
+</span><span id="1-3718"><span class="n">NUMERICTYPE</span><span class="p">:</span> <span class="n">Numeric</span><span class="p">[</span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="n">Numeric</span><span class="p">()</span>
+</span><span id="1-3719"><span class="n">MATCHTYPE</span> <span class="o">=</span> <span class="n">MatchType</span><span class="p">()</span>
+</span><span id="1-3720"><span class="n">TABLEVALUE</span> <span class="o">=</span> <span class="n">TableValueType</span><span class="p">()</span>
+</span><span id="1-3721"><span class="n">DATETIME_TIMEZONE</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="1-3722"><span class="n">TIME_TIMEZONE</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="1-3723"><span class="n">_BIGINTEGER</span> <span class="o">=</span> <span class="n">BigInteger</span><span class="p">()</span>
+</span><span id="1-3724"><span class="n">_DATETIME</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">()</span>
+</span><span id="1-3725"><span class="n">_TIME</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
+</span><span id="1-3726"><span class="n">_STRING</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+</span><span id="1-3727"><span class="n">_UNICODE</span> <span class="o">=</span> <span class="n">Unicode</span><span class="p">()</span>
 </span><span id="1-3728">
-</span><span id="1-3729"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="1-3730">        <span class="bp">self</span><span class="o">.</span><span class="n">as_uuid</span> <span class="o">=</span> <span class="n">as_uuid</span>
-</span><span id="1-3731">        <span class="bp">self</span><span class="o">.</span><span class="n">native_uuid</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="1-3732">
-</span><span id="1-3733">    <span class="nd">@classmethod</span>
-</span><span id="1-3734">    <span class="k">def</span> <span class="nf">adapt_emulated_to_native</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">impl</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-</span><span id="1-3735">        <span class="n">kw</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;as_uuid&quot;</span><span class="p">,</span> <span class="n">impl</span><span class="o">.</span><span class="n">as_uuid</span><span class="p">)</span>
-</span><span id="1-3736">        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-</span><span id="1-3737">
-</span><span id="1-3738">
-</span><span id="1-3739"><span class="n">NULLTYPE</span> <span class="o">=</span> <span class="n">NullType</span><span class="p">()</span>
-</span><span id="1-3740"><span class="n">BOOLEANTYPE</span> <span class="o">=</span> <span class="n">Boolean</span><span class="p">()</span>
-</span><span id="1-3741"><span class="n">STRINGTYPE</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
-</span><span id="1-3742"><span class="n">INTEGERTYPE</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">()</span>
-</span><span id="1-3743"><span class="n">NUMERICTYPE</span><span class="p">:</span> <span class="n">Numeric</span><span class="p">[</span><span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="n">Numeric</span><span class="p">()</span>
-</span><span id="1-3744"><span class="n">MATCHTYPE</span> <span class="o">=</span> <span class="n">MatchType</span><span class="p">()</span>
-</span><span id="1-3745"><span class="n">TABLEVALUE</span> <span class="o">=</span> <span class="n">TableValueType</span><span class="p">()</span>
-</span><span id="1-3746"><span class="n">DATETIME_TIMEZONE</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="1-3747"><span class="n">TIME_TIMEZONE</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="1-3748"><span class="n">_BIGINTEGER</span> <span class="o">=</span> <span class="n">BigInteger</span><span class="p">()</span>
-</span><span id="1-3749"><span class="n">_DATETIME</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">()</span>
-</span><span id="1-3750"><span class="n">_TIME</span> <span class="o">=</span> <span class="n">Time</span><span class="p">()</span>
-</span><span id="1-3751"><span class="n">_STRING</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
-</span><span id="1-3752"><span class="n">_UNICODE</span> <span class="o">=</span> <span class="n">Unicode</span><span class="p">()</span>
-</span><span id="1-3753">
-</span><span id="1-3754"><span class="n">_type_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="1-3755">    <span class="nb">int</span><span class="p">:</span> <span class="n">Integer</span><span class="p">(),</span>
-</span><span id="1-3756">    <span class="nb">float</span><span class="p">:</span> <span class="n">Float</span><span class="p">(),</span>
-</span><span id="1-3757">    <span class="nb">bool</span><span class="p">:</span> <span class="n">BOOLEANTYPE</span><span class="p">,</span>
-</span><span id="1-3758">    <span class="n">_python_UUID</span><span class="p">:</span> <span class="n">Uuid</span><span class="p">(),</span>
-</span><span id="1-3759">    <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span> <span class="n">Numeric</span><span class="p">(),</span>
-</span><span id="1-3760">    <span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">(),</span>
-</span><span id="1-3761">    <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span> <span class="n">_DATETIME</span><span class="p">,</span>
-</span><span id="1-3762">    <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">:</span> <span class="n">_TIME</span><span class="p">,</span>
-</span><span id="1-3763">    <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">:</span> <span class="n">Interval</span><span class="p">(),</span>
-</span><span id="1-3764">    <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">):</span> <span class="n">NULLTYPE</span><span class="p">,</span>
-</span><span id="1-3765">    <span class="nb">bytes</span><span class="p">:</span> <span class="n">LargeBinary</span><span class="p">(),</span>
-</span><span id="1-3766">    <span class="nb">str</span><span class="p">:</span> <span class="n">_STRING</span><span class="p">,</span>
-</span><span id="1-3767">    <span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">),</span>
-</span><span id="1-3768">    <span class="n">Literal</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">),</span>  <span class="c1"># type: ignore[dict-item]</span>
-</span><span id="1-3769"><span class="p">}</span>
-</span><span id="1-3770">
-</span><span id="1-3771">
-</span><span id="1-3772"><span class="n">_type_map_get</span> <span class="o">=</span> <span class="n">_type_map</span><span class="o">.</span><span class="n">get</span>
-</span><span id="1-3773">
-</span><span id="1-3774">
-</span><span id="1-3775"><span class="k">def</span> <span class="nf">_resolve_value_to_type</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-</span><span id="1-3776">    <span class="n">_result_type</span> <span class="o">=</span> <span class="n">_type_map_get</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
-</span><span id="1-3777">
-</span><span id="1-3778">    <span class="k">if</span> <span class="n">_result_type</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
-</span><span id="1-3779">        <span class="n">_result_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__sa_type_engine__&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</span><span id="1-3780">
-</span><span id="1-3781">    <span class="k">if</span> <span class="n">_result_type</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
-</span><span id="1-3782">        <span class="c1"># use inspect() to detect SQLAlchemy built-in</span>
-</span><span id="1-3783">        <span class="c1"># objects.</span>
-</span><span id="1-3784">        <span class="n">insp</span> <span class="o">=</span> <span class="n">inspection</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</span><span id="1-3785">        <span class="k">if</span> <span class="p">(</span>
-</span><span id="1-3786">            <span class="n">insp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-</span><span id="1-3787">            <span class="ow">and</span>
-</span><span id="1-3788">            <span class="c1"># foil mock.Mock() and other impostors by ensuring</span>
-</span><span id="1-3789">            <span class="c1"># the inspection target itself self-inspects</span>
-</span><span id="1-3790">            <span class="n">insp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">inspection</span><span class="o">.</span><span class="n">_registrars</span>
-</span><span id="1-3791">        <span class="p">):</span>
-</span><span id="1-3792">            <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
-</span><span id="1-3793">                <span class="s2">&quot;Object </span><span class="si">%r</span><span class="s2"> is not legal as a SQL literal value&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,)</span>
-</span><span id="1-3794">            <span class="p">)</span>
-</span><span id="1-3795">        <span class="k">return</span> <span class="n">NULLTYPE</span>
-</span><span id="1-3796">    <span class="k">else</span><span class="p">:</span>
-</span><span id="1-3797">        <span class="k">return</span> <span class="n">_result_type</span><span class="o">.</span><span class="n">_resolve_for_literal</span><span class="p">(</span>  <span class="c1"># type: ignore [union-attr]</span>
-</span><span id="1-3798">            <span class="n">value</span>
-</span><span id="1-3799">        <span class="p">)</span>
-</span><span id="1-3800">
-</span><span id="1-3801">
-</span><span id="1-3802"><span class="c1"># back-assign to type_api</span>
-</span><span id="1-3803"><span class="n">type_api</span><span class="o">.</span><span class="n">BOOLEANTYPE</span> <span class="o">=</span> <span class="n">BOOLEANTYPE</span>
-</span><span id="1-3804"><span class="n">type_api</span><span class="o">.</span><span class="n">STRINGTYPE</span> <span class="o">=</span> <span class="n">STRINGTYPE</span>
-</span><span id="1-3805"><span class="n">type_api</span><span class="o">.</span><span class="n">INTEGERTYPE</span> <span class="o">=</span> <span class="n">INTEGERTYPE</span>
-</span><span id="1-3806"><span class="n">type_api</span><span class="o">.</span><span class="n">NULLTYPE</span> <span class="o">=</span> <span class="n">NULLTYPE</span>
-</span><span id="1-3807"><span class="n">type_api</span><span class="o">.</span><span class="n">NUMERICTYPE</span> <span class="o">=</span> <span class="n">NUMERICTYPE</span>
-</span><span id="1-3808"><span class="n">type_api</span><span class="o">.</span><span class="n">MATCHTYPE</span> <span class="o">=</span> <span class="n">MATCHTYPE</span>
-</span><span id="1-3809"><span class="n">type_api</span><span class="o">.</span><span class="n">INDEXABLE</span> <span class="o">=</span> <span class="n">INDEXABLE</span> <span class="o">=</span> <span class="n">Indexable</span>
-</span><span id="1-3810"><span class="n">type_api</span><span class="o">.</span><span class="n">TABLEVALUE</span> <span class="o">=</span> <span class="n">TABLEVALUE</span>
-</span><span id="1-3811"><span class="n">type_api</span><span class="o">.</span><span class="n">_resolve_value_to_type</span> <span class="o">=</span> <span class="n">_resolve_value_to_type</span>
+</span><span id="1-3729"><span class="n">_type_map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="1-3730">    <span class="nb">int</span><span class="p">:</span> <span class="n">Integer</span><span class="p">(),</span>
+</span><span id="1-3731">    <span class="nb">float</span><span class="p">:</span> <span class="n">Float</span><span class="p">(),</span>
+</span><span id="1-3732">    <span class="nb">bool</span><span class="p">:</span> <span class="n">BOOLEANTYPE</span><span class="p">,</span>
+</span><span id="1-3733">    <span class="n">_python_UUID</span><span class="p">:</span> <span class="n">Uuid</span><span class="p">(),</span>
+</span><span id="1-3734">    <span class="n">decimal</span><span class="o">.</span><span class="n">Decimal</span><span class="p">:</span> <span class="n">Numeric</span><span class="p">(),</span>
+</span><span id="1-3735">    <span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">(),</span>
+</span><span id="1-3736">    <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span> <span class="n">_DATETIME</span><span class="p">,</span>
+</span><span id="1-3737">    <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">:</span> <span class="n">_TIME</span><span class="p">,</span>
+</span><span id="1-3738">    <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">:</span> <span class="n">Interval</span><span class="p">(),</span>
+</span><span id="1-3739">    <span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">):</span> <span class="n">NULLTYPE</span><span class="p">,</span>
+</span><span id="1-3740">    <span class="nb">bytes</span><span class="p">:</span> <span class="n">LargeBinary</span><span class="p">(),</span>
+</span><span id="1-3741">    <span class="nb">str</span><span class="p">:</span> <span class="n">_STRING</span><span class="p">,</span>
+</span><span id="1-3742">    <span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">),</span>
+</span><span id="1-3743">    <span class="n">Literal</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">),</span>  <span class="c1"># type: ignore[dict-item]</span>
+</span><span id="1-3744"><span class="p">}</span>
+</span><span id="1-3745">
+</span><span id="1-3746">
+</span><span id="1-3747"><span class="n">_type_map_get</span> <span class="o">=</span> <span class="n">_type_map</span><span class="o">.</span><span class="n">get</span>
+</span><span id="1-3748">
+</span><span id="1-3749">
+</span><span id="1-3750"><span class="k">def</span> <span class="nf">_resolve_value_to_type</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeEngine</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+</span><span id="1-3751">    <span class="n">_result_type</span> <span class="o">=</span> <span class="n">_type_map_get</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="1-3752">
+</span><span id="1-3753">    <span class="k">if</span> <span class="n">_result_type</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+</span><span id="1-3754">        <span class="n">_result_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;__sa_type_engine__&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="1-3755">
+</span><span id="1-3756">    <span class="k">if</span> <span class="n">_result_type</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+</span><span id="1-3757">        <span class="c1"># use inspect() to detect SQLAlchemy built-in</span>
+</span><span id="1-3758">        <span class="c1"># objects.</span>
+</span><span id="1-3759">        <span class="n">insp</span> <span class="o">=</span> <span class="n">inspection</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</span><span id="1-3760">        <span class="k">if</span> <span class="p">(</span>
+</span><span id="1-3761">            <span class="n">insp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="1-3762">            <span class="ow">and</span>
+</span><span id="1-3763">            <span class="c1"># foil mock.Mock() and other impostors by ensuring</span>
+</span><span id="1-3764">            <span class="c1"># the inspection target itself self-inspects</span>
+</span><span id="1-3765">            <span class="n">insp</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">in</span> <span class="n">inspection</span><span class="o">.</span><span class="n">_registrars</span>
+</span><span id="1-3766">        <span class="p">):</span>
+</span><span id="1-3767">            <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ArgumentError</span><span class="p">(</span>
+</span><span id="1-3768">                <span class="s2">&quot;Object </span><span class="si">%r</span><span class="s2"> is not legal as a SQL literal value&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,)</span>
+</span><span id="1-3769">            <span class="p">)</span>
+</span><span id="1-3770">        <span class="k">return</span> <span class="n">NULLTYPE</span>
+</span><span id="1-3771">    <span class="k">else</span><span class="p">:</span>
+</span><span id="1-3772">        <span class="k">return</span> <span class="n">_result_type</span><span class="o">.</span><span class="n">_resolve_for_literal</span><span class="p">(</span>  <span class="c1"># type: ignore [union-attr]</span>
+</span><span id="1-3773">            <span class="n">value</span>
+</span><span id="1-3774">        <span class="p">)</span>
+</span><span id="1-3775">
+</span><span id="1-3776">
+</span><span id="1-3777"><span class="c1"># back-assign to type_api</span>
+</span><span id="1-3778"><span class="n">type_api</span><span class="o">.</span><span class="n">BOOLEANTYPE</span> <span class="o">=</span> <span class="n">BOOLEANTYPE</span>
+</span><span id="1-3779"><span class="n">type_api</span><span class="o">.</span><span class="n">STRINGTYPE</span> <span class="o">=</span> <span class="n">STRINGTYPE</span>
+</span><span id="1-3780"><span class="n">type_api</span><span class="o">.</span><span class="n">INTEGERTYPE</span> <span class="o">=</span> <span class="n">INTEGERTYPE</span>
+</span><span id="1-3781"><span class="n">type_api</span><span class="o">.</span><span class="n">NULLTYPE</span> <span class="o">=</span> <span class="n">NULLTYPE</span>
+</span><span id="1-3782"><span class="n">type_api</span><span class="o">.</span><span class="n">NUMERICTYPE</span> <span class="o">=</span> <span class="n">NUMERICTYPE</span>
+</span><span id="1-3783"><span class="n">type_api</span><span class="o">.</span><span class="n">MATCHTYPE</span> <span class="o">=</span> <span class="n">MATCHTYPE</span>
+</span><span id="1-3784"><span class="n">type_api</span><span class="o">.</span><span class="n">INDEXABLE</span> <span class="o">=</span> <span class="n">INDEXABLE</span> <span class="o">=</span> <span class="n">Indexable</span>
+</span><span id="1-3785"><span class="n">type_api</span><span class="o">.</span><span class="n">TABLEVALUE</span> <span class="o">=</span> <span class="n">TABLEVALUE</span>
+</span><span id="1-3786"><span class="n">type_api</span><span class="o">.</span><span class="n">_resolve_value_to_type</span> <span class="o">=</span> <span class="n">_resolve_value_to_type</span>
 </span></pre></div>
         </article>
         
